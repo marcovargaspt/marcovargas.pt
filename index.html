@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,8 +14,10 @@
       font-weight: 500;
       font-size: 12px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
+      position: relative;
     }
     a {
       color: black;
@@ -25,9 +26,31 @@
     a:hover {
       text-decoration: underline;
     }
+    .footer {
+      position: absolute;
+      bottom: 20px;
+      width: 100%;
+      text-align: center;
+    }
+    .dot-button {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      background-color: black;
+      border-radius: 50%;
+      text-indent: -9999px;
+      overflow: hidden;
+    }
+    .dot-button:hover {
+      transform: scale(1.2);
+      transition: transform 0.2s;
+    }
   </style>
 </head>
 <body>
   <a href="mailto:info@marcovargas.pt">CONTACT</a>
+  <div class="footer">
+    <a href="https://www.instagram.com/marcovargas" target="_blank" class="dot-button">Instagram</a>
+  </div>
 </body>
 </html>
