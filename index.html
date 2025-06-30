@@ -20,31 +20,50 @@
       justify-content: center;
       position: relative;
     }
+
     a {
       color: black;
       text-decoration: none;
     }
+
     a:hover {
       text-decoration: underline;
     }
+
     .footer {
       position: absolute;
-      bottom: 20px;
+      bottom: 5%;
       width: 100%;
       text-align: center;
     }
+
+    .dot-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px; /* distância reduzida entre os dois pontos */
+    }
+
     .dot-button {
       display: inline-block;
-      width: 10px;
-      height: 10px;
+      width: 12px;
+      height: 12px;
       background-color: black;
       border-radius: 50%;
       text-indent: -9999px;
       overflow: hidden;
+      animation: breathing 3s ease-in-out infinite;
     }
-    .dot-button:hover {
-      transform: scale(1.2);
-      transition: transform 0.2s;
+
+    @keyframes breathing {
+      0%, 100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.15); /* tamanho máximo reduzido */
+        opacity: 0.7;
+      }
     }
 
     @media (max-width: 600px) {
@@ -60,8 +79,12 @@
 </head>
 <body>
   <a href="mailto:info@marcovargas.pt">CONTACT</a>
+
   <div class="footer">
-    <a href="https://www.instagram.com/marcovargas" target="_blank" class="dot-button">Instagram</a>
+    <div class="dot-container">
+      <a href="https://www.instagram.com/marcovargas" target="_blank" class="dot-button">Instagram</a>
+      <a href="https://x.com/marcoxvargas" target="_blank" class="dot-button">X</a>
+    </div>
   </div>
 </body>
 </html>
