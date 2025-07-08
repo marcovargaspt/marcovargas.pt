@@ -1,105 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MARCO VARGAS architect</title>
-  <link rel="icon" href="favicon.ico" type="image/x-icon" sizes="64x64" />
-  <style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>MARCO VARGAS architect</title>
+<style>
+  body {
+    margin: 0;
+    height: 100vh;
+    font-family: 'SF Mono', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+  .dot-button {
+    width: 10px;
+    height: 10px;
+    background: black;
+    border-radius: 50%;
+    margin-bottom: 20px;
+  }
+  .footer {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    font-weight: 500;
+    color: black;
+  }
+  .footer a {
+    display: block;
+    margin-bottom: 8px;
+    font-family: 'SF Mono', monospace;
+    font-weight: 500;
+    font-size: 11px;
+    color: black;
+    text-decoration: none;
+  }
+  #time {
+    position: absolute;
+    top: 5%;
+    width: 100%;
+    text-align: center;
+    font-family: 'SF Mono', monospace;
+    font-weight: 500;
+    font-size: 10px;
+    color: black;
+  }
+  @media (prefers-color-scheme: dark) {
     body {
-      margin: 0;
-      height: 100vh;
-      background-color: #ffffff;
-      font-family: 'SF Mono', monospace;
-      font-weight: 500;
-      font-size: 10px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      transition: background-color 0.4s ease, color 0.4s ease;
-    }
-
-    a {
-      color: black;
-      text-decoration: none;
-      transition: color 0.4s ease, opacity 0.3s ease;
-    }
-
-    a:hover {
-      text-decoration: underline;
-      opacity: 0.6;
-    }
-
-    .footer {
-      position: absolute;
-      bottom: 5%;
-      width: 100%;
-      text-align: center;
-    }
-
-    .footer a {
-      font-family: 'SF Mono', monospace;
-      font-weight: 500;
-      font-size: 10px;
-    }
-
-    .dot-button {
-      display: inline-block;
-      width: 10px;
-      height: 10px;
       background-color: black;
-      border-radius: 50%;
-      text-indent: -9999px;
-      overflow: hidden;
-      animation: breathing 3s ease-in-out infinite;
-      transition: background-color 0.4s ease;
+      color: white;
     }
-
-    @keyframes breathing {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.12);
-      }
+    a {
+      color: white;
     }
-
-    @media (max-width: 600px) {
-      body {
-        font-size: 14px;
-      }
-      .dot-button {
-        width: 12px;
-        height: 12px;
-      }
+    .dot-button {
+      background-color: white;
     }
-
-    /* Dark mode */
-    @media (prefers-color-scheme: dark) {
-      body {
-        background-color: black;
-        color: white;
-      }
-
-      a {
-        color: white;
-      }
-
-      .dot-button {
-        background-color: white;
-      }
+    .footer,
+    .footer a,
+    #time {
+      color: white;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
-  <!-- Ponto no centro -->
-  <a href="https://www.instagram.com/marcovargas" target="_blank" rel="noopener noreferrer" class="dot-button">Instagram</a>
 
-  <!-- Contacto no rodapé -->
+  <div id="time">--:--:--</div>
+
+  <div class="dot-button"></div>
+
   <div class="footer">
     <a href="mailto:info@marcovargas.pt">CONTACT</a>
   </div>
+
+<script>
+  function pad(n) {
+    return n.toString().padStart(2, '0');
+  }
+  function updateTime() {
+    const now = new Date();
+    const timeStr = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    document.getElementById('time').textContent = timeStr;
+  }
+  updateTime();
+  setInterval(updateTime, 1000);
+</script>
+
 </body>
 </html>
