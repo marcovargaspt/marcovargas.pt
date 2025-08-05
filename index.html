@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="pt">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
-<title>Marco Vargas</title>
-<link rel="icon" type="image/png" href="favicon.png" />
-<style>
-  html, body {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    max-width: 100vw;
-    overflow-x: hidden;
-    font-family: 'SF Mono', monospace;
-    background-color: white;
-    color: black;
-  }
-  .top-left {
-    position: fixed;
-    top: 2vh;
-    left: 2vh;
-    font-size: 10px;
-    font-weight: 500;
-    max-width: 95vw;
-    line-height: 1.8em; /* aumenta espaçamento entre linhas */
-  }
-  .footer-left {
-    position: fixed;
-    bottom: 2vh;
-    left: 2vh;
-    font-size: 10px;
-    max-width: 95vw;
-  }
-  .footer-left a {
-    text-decoration: none;
-    color: black;
-    font-weight: 500;
-    transition: opacity 0.3s ease;
-  }
-  .footer-left a:hover {
-    opacity: 0.6;
-    text-decoration: underline;
-    cursor: pointer;
-  }
-  @media (prefers-color-scheme: dark) {
-    body {
-      background-color: black;
-      color: white;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <title>Marco Vargas</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      max-width: 100vw;
+      overflow-x: hidden;
+      font-family: 'SF Mono', monospace;
+      background-color: white;
+      color: black;
+    }
+    .top-left {
+      position: fixed;
+      top: 2vh;
+      left: 2vh;
+      font-size: 10px;
+      font-weight: 500;
+      max-width: 95vw;
+      line-height: 1.8em; /* aumenta espaçamento entre linhas */
+    }
+    .footer-left {
+      position: fixed;
+      bottom: 2vh;
+      left: 2vh;
+      font-size: 10px;
+      max-width: 95vw;
     }
     .footer-left a {
-      color: white;
+      text-decoration: none;
+      color: black;
+      font-weight: 500;
+      transition: opacity 0.3s ease;
     }
-  }
-</style>
+    .footer-left a:hover {
+      opacity: 0.6;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: black;
+        color: white;
+      }
+      .footer-left a {
+        color: white;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -87,16 +87,26 @@
   updateTime();
   setInterval(updateTime, 1000);
 
-  // Obter dados reais de sunrise/sunset via API open source
+  // Obter dados de sunrise e sunset com base no IP do usuário
   try {
-    const res = await fetch('https://api.sunrise-sunset.org/json?lat=38.7223&lng=-9.1393&formatted=0');
-    const data = await res.json();
-    const sunriseDate = new Date(data.results.sunrise);
-    const sunsetDate = new Date(data.results.sunset);
-    document.getElementById('sunrise').textContent = 'sunrise: ' + pad(sunriseDate.getHours()) + ':' + pad(sunriseDate.getMinutes());
-    document.getElementById('sunset').textContent = 'sunset: ' + pad(sunsetDate.getHours()) + ':' + pad(sunsetDate.getMinutes());
+    // Obter o IP e coordenadas geográficas
+    const ipRes = await fetch('https://ipinfo.io/json?token=SEU_TOKEN_AQUI');
+    const ipData = await ipRes.json();
+    const [lat, lng] = ipData.loc.split(',');
+
+    // Obter dados de sunrise/sunset usando as coordenadas
+    const sunriseSunsetRes = await fetch(`https://api.sunrise-sunset.org/json?lat=${lat}&lng=${lng}&formatted=0`);
+    const sunriseSunsetData = await sunriseSunsetRes.json();
+    
+    if (sunriseSunsetData.status === 'OK') {
+      const sunriseDate = new Date(sunriseSunsetData.results.sunrise);
+      const sunsetDate = new Date(sunriseSunsetData.results.sunset);
+      
+      document.getElementById('sunrise').textContent = 'sunrise: ' + pad(sunriseDate.getHours()) + ':' + pad(sunriseDate.getMinutes());
+      document.getElementById('sunset').textContent = 'sunset: ' + pad(sunsetDate.getHours()) + ':' + pad(sunsetDate.getMinutes());
+    }
   } catch (e) {
-    console.error('Erro ao obter dados de sunrise/sunset', e);
+    console.error('Erro ao obter dados de sunrise/sunset ou geolocalização', e);
   }
 })();
 </script>
