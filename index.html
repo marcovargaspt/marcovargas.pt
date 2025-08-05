@@ -59,8 +59,6 @@
   <div class="top-left">
     website is under construction<br>
     <span id="datetime"></span><br>
-    <span id="sunrise"></span><br>
-    <span id="sunset"></span>
   </div>
 
   <div class="footer-left">
@@ -86,18 +84,6 @@
 
   updateTime();
   setInterval(updateTime, 1000);
-
-  // Obter dados reais de sunrise/sunset via API open source
-  try {
-    const res = await fetch('https://api.sunrise-sunset.org/json?lat=38.7223&lng=-9.1393&formatted=0');
-    const data = await res.json();
-    const sunriseDate = new Date(data.results.sunrise);
-    const sunsetDate = new Date(data.results.sunset);
-    document.getElementById('sunrise').textContent = 'sunrise: ' + pad(sunriseDate.getHours()) + ':' + pad(sunriseDate.getMinutes());
-    document.getElementById('sunset').textContent = 'sunset: ' + pad(sunsetDate.getHours()) + ':' + pad(sunsetDate.getMinutes());
-  } catch (e) {
-    console.error('Erro ao obter dados de sunrise/sunset', e);
-  }
 })();
 </script>
 
