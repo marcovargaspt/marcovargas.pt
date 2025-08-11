@@ -4,7 +4,25 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
 <title>Marco Vargas architect</title>
+<meta name="description" content="Marco Vargas architect / arquitecto especializado em projetos residenciais e comerciais, arquitetura contemporânea e design funcional.">
+<meta name="keywords" content="Marco Vargas, architect, arquitecto, arquitetura, design, projetos de arquitetura, arquitetura contemporânea">
 <link rel="icon" type="image/png" href="favicon.png" />
+
+<!-- Schema Markup -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Marco Vargas",
+  "jobTitle": "Architect",
+  "url": "https://www.seusite.com",
+  "sameAs": [
+    "https://www.linkedin.com/in/marcovargas",
+    "https://www.instagram.com/marcovargas"
+  ]
+}
+</script>
+
 <style>
   html, body {
     margin: 0;
@@ -14,16 +32,17 @@
     overflow-x: hidden;
     font-family: 'SF Mono', monospace;
     background-color: white;
-    color: black;
+    color: #000000; /* black */
+    font-weight: 100; /* thinnest possible font */
   }
   .top-left {
     position: fixed;
     top: 2vh;
     left: 2vh;
     font-size: 10px;
-    font-weight: 500;
+    font-weight: 100; /* thinnest possible font */
     max-width: 95vw;
-    line-height: 1.8em; /* aumenta espaçamento entre linhas */
+    line-height: 1.8em;
   }
   .footer-left {
     position: fixed;
@@ -34,8 +53,8 @@
   }
   .footer-left a {
     text-decoration: none;
-    color: black;
-    font-weight: 500;
+    color: #000000; /* black */
+    font-weight: 100; /* thinnest possible font */
     transition: opacity 0.3s ease;
   }
   .footer-left a:hover {
@@ -66,22 +85,18 @@
   </div>
 
 <script>
-(async function() {
+(function() {
   const pad = n => String(n).padStart(2, '0');
-
-  // Atualiza hora em tempo real
   function updateTime() {
     const now = new Date();
     const localOffset = now.getTimezoneOffset();
-    const referenceOffset = 0;
-    const diffHours = -(localOffset - referenceOffset) / 60;
+    const diffHours = -localOffset / 60;
     const sign = diffHours >= 0 ? '+' : '-';
-    const datePart = now.getFullYear().toString() + pad(now.getMonth()+1) + pad(now.getDate());
+    const datePart = now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate());
     const timePart = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
     const offsetPart = sign + pad(Math.abs(diffHours)) + ':00';
     document.getElementById('datetime').textContent = datePart + 'T' + timePart + offsetPart;
   }
-
   updateTime();
   setInterval(updateTime, 1000);
 })();
