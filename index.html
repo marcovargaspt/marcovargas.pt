@@ -40,9 +40,17 @@
     top: 2vh;
     left: 2vh;
     font-size: 10px;
-    font-weight: 100; /* thinnest possible font */
+    font-weight: 100;
     max-width: 95vw;
-    line-height: 1.8em;
+    line-height: 2em; /* mais espaçamento vertical */
+  }
+  #datetime {
+    display: inline-block;
+    margin-top: 6px; /* espaçamento extra da frase para a data */
+  }
+  .date-line {
+    display: block;
+    margin-bottom: 6px; /* espaçamento extra da data para a hora */
   }
   .footer-left {
     position: fixed;
@@ -53,8 +61,8 @@
   }
   .footer-left a {
     text-decoration: none;
-    color: #000000; /* black */
-    font-weight: 100; /* thinnest possible font */
+    color: #000000;
+    font-weight: 100;
     transition: opacity 0.3s ease;
   }
   .footer-left a:hover {
@@ -77,7 +85,7 @@
 
   <div class="top-left">
     website is under construction<br>
-    <span id="datetime"></span><br>
+    <span id="datetime"></span>
   </div>
 
   <div class="footer-left">
@@ -89,13 +97,9 @@
   const pad = n => String(n).padStart(2, '0');
   function updateTime() {
     const now = new Date();
-    const localOffset = now.getTimezoneOffset();
-    const diffHours = -localOffset / 60;
-    const sign = diffHours >= 0 ? '+' : '-';
-    const datePart = now.getFullYear() + pad(now.getMonth()+1) + pad(now.getDate());
-    const timePart = pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds());
-    const offsetPart = sign + pad(Math.abs(diffHours)) + ':00';
-    document.getElementById('datetime').textContent = datePart + 'T' + timePart + offsetPart;
+    const datePart = `${now.getFullYear()} ${pad(now.getMonth() + 1)} ${pad(now.getDate())}`;
+    const timePart = `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())}`;
+    document.getElementById('datetime').innerHTML = `<span class="date-line">${datePart}</span>${timePart}`;
   }
   updateTime();
   setInterval(updateTime, 1000);
