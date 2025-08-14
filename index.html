@@ -14,33 +14,36 @@
             color: black;
             margin: 0;
             padding: 0;
-            letter-spacing: 0.03em; /* Wider spacing */
-            font-weight: 300; /* Light */
+            letter-spacing: 0.03em;
+            font-weight: 100;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
         .top-left {
             position: fixed;
             top: 10px;
             left: 10px;
             font-size: 7pt;
-            font-weight: 300; /* Light */
+            font-weight: 100;
         }
         .top-left .datetime {
             display: block;
             margin-top: 15px;
             line-height: 0.5;
             font-size: 7pt;
-            font-weight: 10; /* Light */
+            font-weight: 100;
         }
         .bottom-left {
             position: fixed;
             bottom: 10px;
             left: 10px;
             font-size: 7pt;
-            font-weight: 300; /* Light */
+            font-weight: 100;
         }
         a {
             color: black;
             text-decoration: none;
+            font-weight: 100;
         }
     </style>
 </head>
@@ -55,7 +58,7 @@
     <script>
         function updateDateTime() {
             const now = new Date();
-            const timezoneOffset = -now.getTimezoneOffset() / 60; // in hours
+            const timezoneOffset = -now.getTimezoneOffset() / 60;
             const sign = timezoneOffset >= 0 ? '+' : '-';
             const offsetHours = Math.floor(Math.abs(timezoneOffset)).toString().padStart(2, '0');
             const offsetMinutes = (Math.abs(timezoneOffset) * 60 % 60).toString().padStart(2, '0');
