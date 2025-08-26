@@ -28,23 +28,22 @@
                 color: white !important;
             }
         }
-        .top-left {
+        .aligned-box {
             position: fixed;
-            top: 10px;
             left: 10px;
             font-size: 7pt;
             font-weight: 100;
+            text-align: left;
         }
-        .top-left .datetime {
-            display: block;
-            line-height: 0.5;
-            font-size: 7pt;
-            font-weight: 100;
+        .top-left {
+            top: 10px;
         }
         .bottom-left {
-            position: fixed;
             bottom: 10px;
-            left: 10px;
+        }
+        .datetime {
+            display: block;
+            line-height: 0.5;
             font-size: 7pt;
             font-weight: 100;
         }
@@ -56,10 +55,10 @@
     </style>
 </head>
 <body>
-    <div class="top-left">
+    <div class="aligned-box top-left">
         <span id="datetime" class="datetime"></span>
     </div>
-    <div class="bottom-left">
+    <div class="aligned-box bottom-left">
         <a href="mailto:contact@marcovargas.pt">contact</a>
     </div>
     <script>
