@@ -123,18 +123,18 @@ function updateDateTime(){
 updateDateTime();
 setInterval(updateDateTime,1000);
 
-/* TIMING — VERSÃO MUITO LENTA */
+/* TIMINGS — NOVA ORDEM: TIME → VILLA MATER → ASSINATURA */
 window.addEventListener('load',()=>{
   setTimeout(()=> {
     document.getElementById('timeBox').classList.add('visible');
   },1800);
 
   setTimeout(()=> {
-    document.getElementById('signatureBox').classList.add('visible');
+    document.getElementById('villa').classList.add('visible');
   },5500);
 
   setTimeout(()=> {
-    document.getElementById('villa').classList.add('visible');
+    document.getElementById('signatureBox').classList.add('visible');
   },9500);
 });
 </script>
