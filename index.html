@@ -37,19 +37,20 @@ body {
 
 .box{
   position:fixed;
-  left:10px;
+  left:20px;
   font-size:9pt;
 }
 
 /* topo esquerdo: assinatura */
-.top{top:12px;}
+.top{top:22px;}
 
 /* fundo esquerdo: Villa Mater */
-.bottom{bottom:12px;}
+.bottom{bottom:22px;}
 
 .signature{
   margin-bottom:4px;
   line-height:1.5;
+  letter-spacing: 0.05em;  /* 5% espaçamento entre caracteres */
 }
 .signature span{display:block;}
 
@@ -63,17 +64,18 @@ a{
 /* Villa Mater agora no rodapé esquerdo */
 .villa-mater{
   position:fixed;
-  left:10px;
-  bottom:12px;
+  left:20px;
+  bottom:22px;
   font-size:9pt;
-  letter-spacing:0.06em;
+  letter-spacing:0.05em;  /* 5% espaçamento entre caracteres */
   z-index:10;
 }
 
 @media (max-width:768px){
   .villa-mater{
-    bottom:12px;
+    bottom:22px;
     font-size:9pt;
+    letter-spacing:0.04em;  /* ligeiramente menor em mobile */
   }
 }
 </style>
