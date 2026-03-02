@@ -38,11 +38,10 @@ body {
 .box{
   position:fixed;
   left:20px;
-  font-size:8pt;
 }
 
-/* topo esquerdo: agora Villa Mater */
-.top{top:22px;}
+/* topo esquerdo: Villa Mater a 10pt */
+.top{top:22px; font-size:10pt;}
 
 /* fundo esquerdo: assinatura */
 .bottom{bottom:22px;}
@@ -50,7 +49,7 @@ body {
 .signature{
   margin-bottom:4px;
   line-height:1.5;
-  letter-spacing: 0.05em;  /* 5% espaçamento entre caracteres */
+  letter-spacing: 0.05em;
 }
 .signature span{display:block;}
 
@@ -61,13 +60,13 @@ a{
   line-height:1;
 }
 
-/* Assinatura agora no rodapé esquerdo */
+/* Assinatura no rodapé esquerdo - 8pt explícito */
 .signature-box{
   position:fixed;
   left:20px;
   bottom:22px;
   font-size:8pt;
-  letter-spacing:0.05em;  /* 5% espaçamento entre caracteres */
+  letter-spacing:0.05em;
   z-index:10;
 }
 
@@ -75,7 +74,11 @@ a{
   .signature-box{
     bottom:22px;
     font-size:8pt;
-    letter-spacing:0.04em;  /* ligeiramente menor em mobile */
+    letter-spacing:0.04em;
+  }
+  
+  .top{
+    font-size:10pt; /* mantém 10pt em mobile */
   }
 }
 </style>
@@ -83,14 +86,14 @@ a{
 
 <body>
 
-<!-- Villa Mater no topo esquerdo -->
+<!-- Villa Mater no topo esquerdo - 10pt -->
 <div class="box top" id="villaBox">
   <a href="https://hdl.handle.net/10216/166408" target="_blank">
     Villa Mater
   </a>
 </div>
 
-<!-- Assinatura no rodapé esquerdo -->
+<!-- Assinatura no rodapé esquerdo - 8pt -->
 <div class="signature-box" id="signatureBox">
   <div class="signature">
     <span>MARCO VARGAS</span>
