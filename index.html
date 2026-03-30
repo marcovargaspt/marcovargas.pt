@@ -28,6 +28,7 @@ body {
   color: black;
   font-weight: 300;
   font-size: 8pt;
+  letter-spacing: 0.05em;
 }
 @media (prefers-color-scheme: dark) {
   body { background: black; color: white; }
@@ -38,71 +39,55 @@ body {
   left: 20px;
 }
 .bottom { bottom: 22px; }
-.signature {
-  margin-bottom: 4px;
-  line-height: 1.5;
-  letter-spacing: 0;
-}
-.signature span { display: block; }
 a {
   color: inherit;
   text-decoration: none;
   display: block;
-  line-height: 1;
+  line-height: 1.5;
 }
 .villa-mater {
   position: fixed;
   left: 20px;
   top: 22px;
   font-size: 10pt;
-  letter-spacing: 0;
   z-index: 10;
 }
 @media (max-width: 768px) {
   .villa-mater {
-    top: 22px;
     font-size: 9pt;
-    letter-spacing: 0;
   }
 }
 .signature-box {
   font-size: 8pt;
-  letter-spacing: 0;
 }
-.signature-box > a {
-  font-size: 8pt;
+.signature {
+  line-height: 1.5;
+}
+.signature span {
+  display: block;
 }
 .signature .name {
-  font-size: 8pt;
-  letter-spacing: 0;
-  line-height: 1.5;
+  font-size: 10pt;
 }
-.signature .role {
+.signature .role,
+.signature .phone,
+.signature .email {
   font-size: 8pt;
-  line-height: 1.5;
 }
-.signature .role a {
+.signature .email a {
   display: inline;
-  line-height: 1.5;
-}
-@media (max-width: 768px) {
-  .signature-box {
-    letter-spacing: 0;
-  }
 }
 </style>
 </head>
 <body>
 <div class="villa-mater" id="villa">
-  <a href="https://hdl.handle.net/10216/166408" target="_blank">
-    Villa Mater
-  </a>
+  <a href="https://hdl.handle.net/10216/166408" target="_blank">Villa Mater</a>
 </div>
 <div class="box bottom signature-box" id="signatureBox">
   <div class="signature">
     <span class="name">Marco Vargas</span>
     <span class="role">arquitecto</span>
-    <span class="role"><a href="mailto:mail@marcovargas.pt">contacto</a></span>
+    <span class="email"><a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a></span>
   </div>
 </div>
 </body>
