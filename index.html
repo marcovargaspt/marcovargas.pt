@@ -50,6 +50,7 @@ a {
   left: 20px;
   top: 22px;
   font-size: 10pt;
+  font-weight: 400;
   z-index: 10;
 }
 @media (max-width: 768px) {
@@ -67,12 +68,16 @@ a {
   display: block;
 }
 .signature .name {
-  font-size: 10pt;
+  font-size: 8pt;
+  font-weight: 400;
 }
-.signature .role,
-.signature .phone,
+.signature .role {
+  font-size: 8pt;
+  font-weight: 400;
+}
 .signature .email {
   font-size: 8pt;
+  font-weight: 300;
 }
 .signature .email a {
   display: inline;
@@ -87,7 +92,7 @@ a {
   <div class="signature">
     <span class="name">Marco Vargas</span>
     <span class="role">arquitecto</span>
-    <span class="email"><a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a></span>
+    <span class="email"><a href="mailto:mail@marcovargas.pt">mail&#64;marcovargas.pt</a></span>
   </div>
 </div>
 </body>
