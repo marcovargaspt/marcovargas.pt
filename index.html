@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MARCO VARGAS</title>
-<meta name="description" content="marco vargas, marco vargas homepage,marco vargas aquitecto, marco vargas arquitectura, vargas architecture, vargas office, vargas website, vargas contact, vargas address, villa mater, Villa Mater, Villa Mater: a house in Azores, FAUP, Universidade do Porto, Iconographic Memory, Meaningful Images, Villa Mater, A house in Azores, Thoughts & Reflections, Search for Identity, Ebejer Bonnici Studio, Ebejer Bonnici Urna, Urna, Malta, Valerio Olgiati, Flims, Caumasee, Das Gelbe Haus, Yellow House, Paspels, Bardill, Plantahof, Plantahof, Zernez, KN, Perm, Alentejo, Villa Além, Portugal, Carnasciale, Iconographic Autobiography, Iconographische Autobiographie, The Icons of Architets, Pictographs, David Adjaye, Francisco Aires Mateus, Manuel Aires Mateus, Alejandro Aravena, Ben van Berkel, Mario Botta, Alberto Campo Baeza, Adam Caruso, Peter St John, David Chipperfield, Preston Scott Cohen, Hermann Czech, Roger Diener, Peter Eisenman, Sou Fujimoto, Antón Garcia‑Abril, Go Hasegawa, Jacques Herzog, Pierre de Meuron, Steven Holl, Anne Holtrop, Junya Ishigami, Arata Isozaki, Toyo Ito, Bijoy Jain, Studio Mumbai, Momoyo Kaijima, Yoshiharu Tsukamoto, Atelier Bow‑Wow, Christian Kerez, Hans Kollhoff, Winy Maas, MVRDV, Peter Märkli, Jürgen Mayer H., Richard Meier, Glenn Murcutt, Ryue Nishizawa, Valerio Olgiati, John Pawson, Cecilia Puga, Smiljan Radic, Richard Rogers, Kazuyo Sejima, Jonathan Sergison, Stephen Bates, Miroslav Šik, Álvaro Siza Vieira, Eduardo Souto de Moura, Robert Venturi, Denise Scott Brown, Peter Wilson, Bolles + Wilson, Peter Zumthor, EBEJER BONNICI">
+<title>Marco Vargas</title>
+<meta name="description" content="marco vargas, marco vargas homepage,marco vargas aquitecto, marco vargas arquitectura, vargas architecture, vargas office, vargas website, vargas contact, vargas address, villa mater, Villa Mater, Villa Mater: a house in Azores, FAUP, Universidade do Porto, Iconographic Memory, Meaningful Images, Villa Mater, A house in Azores, Thoughts & Reflections, Search for Identity, Ebejer Bonnici Studio, Ebejer Bonnici Urna, Urna, Malta, Valerio Olgiati, Flims, Caumasee, Das Gelbe Haus, Yellow House, Paspels, Bardill, Plantahof, Plantahof, Zernez, KN, Perm, Alentejo, Villa Além, Portugal, Carnasciale, Iconographic Autobiography, Iconographische Autobiographie, The Icons of Architets, Pictographs, David Adjaye, Francisco Aires Mateus, Manuel Aires Mateus, Alejandro Aravena, Ben van Berkel, Mario Botta, Alberto Campo Baeza, Adam Caruso, Peter St John, David Chipperfield, Preston Scott Cohen, Hermann Czech, Roger Diener, Peter Eisenman, Sou Fujimoto, Antón Garcia-Abril, Go Hasegawa, Jacques Herzog, Pierre de Meuron, Steven Holl, Anne Holtrop, Junya Ishigami, Arata Isozaki, Toyo Ito, Bijoy Jain, Studio Mumbai, Momoyo Kaijima, Yoshiharu Tsukamoto, Atelier Bow-Wow, Christian Kerez, Hans Kollhoff, Winy Maas, MVRDV, Peter Märkli, Jürgen Mayer H., Richard Meier, Glenn Murcutt, Ryue Nishizawa, Valerio Olgiati, John Pawson, Cecilia Puga, Smiljan Radic, Richard Rogers, Kazuyo Sejima, Jonathan Sergison, Stephen Bates, Miroslav Sik, Álvaro Siza Vieira, Eduardo Souto de Moura, Robert Venturi, Denise Scott Brown, Peter Wilson, Bolles Wilson, Peter Zumthor, EBEJER BONNICI">
 <meta name="author" content="marco vargas">
 <link rel="canonical" href="https://www.marcovargas.pt">
 <meta property="og:title" content="marco vargas arquitecto">
@@ -13,87 +13,181 @@
 <meta property="og:url" content="https://www.marcovargas.pt">
 <meta name="twitter:card" content="summary">
 <link rel="alternate" hreflang="en" href="https://hdl.handle.net/10216/166408" />
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
-* {
-  text-transform: uppercase;
-}
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  font-family: 'IBM Plex Mono', monospace;
-  margin: 0;
-  padding: 0;
-  background: white;
+  font-family: Inter, Helvetica Neue, Arial, sans-serif;
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 1.5;
   color: black;
-  font-weight: 300;
-  font-size: 8pt;
-  letter-spacing: 0.05em;
+  background: white;
+  padding: 10px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 @media (prefers-color-scheme: dark) {
   body { background: black; color: white; }
-  a { color: white !important; }
 }
-.box {
+a { color: inherit; text-decoration: none; }
+
+.lang-toggle {
   position: fixed;
-  left: 20px;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  z-index: 200;
+  background: none;
+  border: none;
+  font-family: inherit;
+  font-size: 10px;
+  font-weight: 400;
+  color: black;
+  padding: 0;
 }
-.bottom { bottom: 22px; }
-a {
-  color: inherit;
+@media (prefers-color-scheme: dark) { .lang-toggle { color: white; } }
+.lang-toggle:hover { text-decoration: underline; }
+
+#home { display: block; }
+.home-name { cursor: pointer; }
+.home-role { margin-bottom: 30px; }
+.home-label { margin-bottom: 5px; }
+
+.project-link {
+  cursor: pointer;
+  display: block;
+  width: fit-content;
   text-decoration: none;
-  display: block;
-  line-height: 1.5;
 }
-.villa-mater {
+.project-link:hover { text-decoration: underline; }
+.home-section { margin-bottom: 30px; }
+
+.bottom-box {
   position: fixed;
-  left: 20px;
-  top: 22px;
-  font-size: 10pt;
-  font-weight: 400;
-  z-index: 10;
+  bottom: 10px;
+  left: 10px;
 }
-@media (max-width: 768px) {
-  .villa-mater {
-    font-size: 9pt;
-  }
-}
-.signature-box {
-  font-size: 8pt;
-}
-.signature {
-  line-height: 1.5;
-}
-.signature span {
+.bottom-box a,
+.bottom-box span {
   display: block;
+  width: fit-content;
+  text-decoration: none;
+  cursor: pointer;
 }
-.signature .name {
-  font-size: 8pt;
+.bottom-box a:hover,
+.bottom-box span:hover { text-decoration: underline; }
+.bottom-about { margin-bottom: 30px; }
+
+.slide { display: none; }
+.slide.active { display: block; }
+
+.slide-header {
+  position: fixed;
+  top: 10px;
+  left: 10px;
+  cursor: pointer;
+  z-index: 100;
+  background: transparent;
+  border: none;
+  font-family: inherit;
+  font-size: 10px;
   font-weight: 400;
+  color: black;
+  padding: 0;
 }
-.signature .role {
-  font-size: 8pt;
-  font-weight: 400;
+@media (prefers-color-scheme: dark) { .slide-header { color: white; } }
+
+.slide-text {
+  padding-top: 30px;
+  padding-bottom: 50px;
+  background: white;
 }
-.signature .email {
-  font-size: 8pt;
-  font-weight: 300;
-}
-.signature .email a {
-  display: inline;
-}
+@media (prefers-color-scheme: dark) { .slide-text { background: black; } }
+.slide-text-inner { max-width: 480px; }
+.slide-title { margin-bottom: 20px; }
+.slide-body p { margin-bottom: 14px; }
+.slide-body p:last-child { margin-bottom: 0; }
 </style>
 </head>
 <body>
-<div class="villa-mater" id="villa">
-  <a href="https://hdl.handle.net/10216/166408" target="_blank">Villa Mater</a>
-</div>
-<div class="box bottom signature-box" id="signatureBox">
-  <div class="signature">
-    <span class="name">Marco Vargas</span>
-    <span class="role">arquitecto</span>
-    <span class="email"><a href="mailto:mail@marcovargas.pt">mail&#64;marcovargas.pt</a></span>
+
+<button class="lang-toggle" id="lang-btn">PT</button>
+
+<div id="home">
+  <div class="home-name" id="home-name-btn">Marco Vargas</div>
+  <div class="home-role" data-pt="arquitecto" data-en="architect">arquitecto</div>
+
+  <div class="home-section">
+    <div class="home-label" data-pt="Trabalhos seleccionados" data-en="Selected work">Trabalhos seleccionados</div>
+    <a href="https://hdl.handle.net/10216/166408" target="_blank" class="project-link">Villa Mater</a>
+  </div>
+
+  <div class="bottom-box">
+    <div class="bottom-about">
+      <span class="project-link" id="about-link" data-pt="Sobre" data-en="About">Sobre</span>
+    </div>
+    <a href="https://www.instagram.com/marcovargas" target="_blank">@marcovargas</a>
+    <a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a>
   </div>
 </div>
+
+<div class="slide" id="slide-about">
+  <button class="slide-header" id="close-about">Marco Vargas</button>
+  <div class="slide-text">
+    <div class="slide-text-inner">
+      <div class="slide-title" id="about-title">Sobre</div>
+      <div class="slide-body" id="about-text-pt">
+        <p>Marco Vargas é um arquitecto português de Ovar que concluiu os seus estudos na Faculdade de Arquitectura da Universidade do Porto (FAUP) em 2025. A sua tese de mestrado, intitulada "Villa Mater: a house in Azores", foi orientada pela Professora e Arquitecta Patrícia da Silva, docente na Accademia di Architettura, USI Mendrisio. O projecto demonstra o seu interesse pela arquitectura essencial como espaço de cuidado, silêncio e transformação.</p>
+        <p>Durante a sua formação, Marco participou em duas edições do Porto Academy, sob a orientação de Raphael Zuber e Kersten Geers. As suas contribuições para estes workshops foram publicadas nas edições oficiais do programa. Em 2016, foi distinguido com o primeiro prémio em dois concursos: "GO! Architecture" para a AEFAUP (um concurso para estudantes) e o Warsaw Under Construction Festival 8, durante o estágio curricular com a BUDCUD, em Cracóvia. Ambas as propostas focaram-se na experiência do espaço.</p>
+        <p>Marco Vargas iniciou a sua carreira profissional como arquitecto júnior no atelier EBEJER BONNICI em Malta. Participou no desenvolvimento e acompanhamento de projectos residenciais e comerciais, colaborando estreitamente com equipas de arquitectura e engenharia locais. Entre os seus trabalhos destacam-se a renovação de um apartamento num edifício histórico em Londres, a restauração e renovação de um palácio do século XVIII em Birkirkara e o desenho de três grandes habitações em Naxxar. Durante o seu tempo em Malta, assumiu também funções de supervisão em obra sob a alçada do seu supervisor, o que lhe permitiu aprofundar o contacto directo com processos construtivos e a gestão de equipas multidisciplinares em contexto internacional.</p>
+        <p>Actualmente, a sua prática cruza arquitectura especializada em software BIM, consultoria criativa e direcção visual, mantendo uma abordagem centrada na relação entre espaço, estrutura e matéria.</p>
+      </div>
+      <div class="slide-body" id="about-text-en" style="display:none">
+        <p>Marco Vargas is a Portuguese architect from Ovar who completed his studies at the Faculty of Architecture of the University of Porto (FAUP) in 2025. His master's thesis, entitled "Villa Mater: a house in Azores", was supervised by Professor and Architect Patrícia da Silva, lecturer at the Accademia di Architettura, USI Mendrisio. The project demonstrates his interest in essential architecture as a space of care, silence and transformation.</p>
+        <p>During his studies, Marco participated in two editions of Porto Academy, under the guidance of Raphael Zuber and Kersten Geers. His contributions to these workshops were published in the official editions of the programme. In 2016, he was awarded first prize in two competitions: "GO! Architecture" for AEFAUP (a student competition) and the Warsaw Under Construction Festival 8, during his curricular internship with BUDCUD in Kraków. Both proposals focused on the experience of space.</p>
+        <p>Marco Vargas began his professional career as a junior architect at EBEJER BONNICI in Malta. He participated in the development and follow-up of residential and commercial projects, working closely with local architecture and engineering teams. His work includes the renovation of an apartment in a historic building in London, the restoration and renovation of an 18th-century palace in Birkirkara, and the design of three large residences in Naxxar. During his time in Malta, he also took on site supervision responsibilities under his supervisor, deepening his direct contact with construction processes and the management of multidisciplinary teams in an international context.</p>
+        <p>Currently, his practice combines architecture specialised in BIM software, creative consultancy and visual direction, maintaining an approach centred on the relationship between space, structure and matter.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+let lang = 'pt';
+
+function goHome() {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById('home').style.display = 'block';
+}
+
+function showAbout() {
+  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+  document.getElementById('home').style.display = 'none';
+  document.getElementById('slide-about').classList.add('active');
+}
+
+function applyLang() {
+  const isPT = lang === 'pt';
+  document.getElementById('lang-btn').textContent = isPT ? 'PT' : 'EN';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-pt]').forEach(el => {
+    el.textContent = isPT ? el.dataset.pt : el.dataset.en;
+  });
+  document.getElementById('about-title').textContent = isPT ? 'Sobre' : 'About';
+  document.getElementById('about-text-pt').style.display = isPT ? 'block' : 'none';
+  document.getElementById('about-text-en').style.display = isPT ? 'none' : 'block';
+}
+
+document.getElementById('lang-btn').addEventListener('click', function() {
+  lang = lang === 'pt' ? 'en' : 'pt';
+  applyLang();
+});
+
+document.getElementById('about-link').addEventListener('click', showAbout);
+document.getElementById('home-name-btn').addEventListener('click', goHome);
+document.getElementById('close-about').addEventListener('click', goHome);
+
+applyLang();
+</script>
 </body>
 </html>
