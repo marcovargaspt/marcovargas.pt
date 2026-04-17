@@ -30,20 +30,14 @@ body {
 }
 a { color: inherit; text-decoration: none; }
 
-#home { display: block; }
-.home-name {
-  cursor: pointer;
-}
+.home-name { cursor: default; }
 .home-role { margin-bottom: 30px; }
 .home-label { margin-bottom: 5px; }
 
 .project-link {
-  cursor: pointer;
   display: block;
   width: fit-content;
   text-decoration: none;
-  background: none;
-  border: none;
   font-family: inherit;
   font-size: 10px;
   font-weight: 400;
@@ -53,99 +47,28 @@ a { color: inherit; text-decoration: none; }
 .project-link:hover { text-decoration: underline; }
 .home-section { margin-bottom: 30px; }
 
-.bottom-box a,
-.bottom-box button {
+.bottom-box a {
   display: block;
   width: fit-content;
   text-decoration: none;
   cursor: pointer;
 }
-.bottom-box a:hover,
-.bottom-box button:hover { text-decoration: underline; }
-.bottom-about { margin-bottom: 30px; }
-
-.slide { display: none; }
-.slide.active { display: block; }
-
-.slide-header {
-  position: fixed;
-  top: 10px;
-  left: 10px;
-  cursor: pointer;
-  z-index: 100;
-  background: transparent;
-  border: none;
-  font-family: inherit;
-  font-size: 10px;
-  font-weight: 400;
-  color: black;
-  padding: 0;
-}
-
-.slide-text {
-  padding-top: 30px;
-  padding-bottom: 50px;
-  background: white;
-}
-.slide-text-inner { max-width: 480px; }
-.slide-title { margin-bottom: 20px; }
-.slide-body p { margin-bottom: 14px; }
-.slide-body p:last-child { margin-bottom: 0; }
+.bottom-box a:hover { text-decoration: underline; }
 </style>
-
 </head>
 <body>
 
-<div id="home">
-  <div class="home-name" id="home-name-btn">Marco Vargas</div>
-  <div class="home-role">Architect</div>
+<div class="home-name">Marco Vargas</div>
+<div class="home-role">Architect</div>
 
-  <div class="home-section">
-    <div class="home-label">Selected work</div>
-    <a href="https://hdl.handle.net/10216/166408" target="_blank" class="project-link">Villa Mater</a>
-  </div>
-
-  <div class="bottom-box">
-    <div class="bottom-about">
-      <button class="project-link" id="about-link">About</button>
-    </div>
-    <a href="https://www.instagram.com/marcovargas" target="_blank">&#64;marcovargas</a>
-    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;">&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;</a>
-  </div>
+<div class="home-section">
+  <div class="home-label">Selected work</div>
+  <a href="https://hdl.handle.net/10216/166408" target="_blank" class="project-link">Villa Mater</a>
 </div>
 
-<div class="slide" id="slide-about">
-  <button class="slide-header" id="close-about">Marco Vargas</button>
-  <div class="slide-text">
-    <div class="slide-text-inner">
-      <div class="slide-title">About</div>
-      <div class="slide-body">
-        <p>Marco Vargas, a Portuguese architect from Ovar, completed his studies at the Faculty of Architecture of the University of Porto (FAUP) in 2025. His master's thesis, "Villa Mater: a house in the Azores," was supervised by the Architect Patrícia da Silva, lecturer at the Accademia di Architettura, USI Mendrisio. The project reflects his deep interest in essential architecture, a space of care, silence, and transformation.</p>
-        <p>During his academic training, he participated in two editions of Porto Academy under the guidance of architects Raphael Zuber and Kersten Geers. In 2016, he won the first prize in two competitions: the GO! Architecture for AEFAUP and the Warsaw Under Construction Festival 8, during his internship with BUDCUD in Kraków. Both proposals placed a strong emphasis on the experience of space.</p>
-        <p>His professional career began as a junior architect at EBEJER BONNICI in Malta. Among his works are the renovation of an apartment in a historic building in London for the artist Anna Pesonen, the restoration and renovation of an 18th-century palazzo in Birkirkara, and the design of three single-family residences in Naxxar.</p>
-        <p>He currently collaborates in the creation of a sensorial space where architecture becomes a language of healing and introspection. Ideated by the creative director Ellen Nielsen, the project explores the boundaries between material expression and inner transformation.</p>
-        <p>His practice integrates architecture specialised in BIM, centred on the relationship between space, meaning, and emotion.</p>
-      </div>
-    </div>
-  </div>
+<div class="bottom-box">
+  <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;">&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;</a>
 </div>
-
-<script>
-function goHome() {
-  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-  document.getElementById('home').style.display = 'block';
-}
-
-function showAbout() {
-  document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
-  document.getElementById('home').style.display = 'none';
-  document.getElementById('slide-about').classList.add('active');
-}
-
-document.getElementById('about-link').addEventListener('click', showAbout);
-document.getElementById('home-name-btn').addEventListener('click', goHome);
-document.getElementById('close-about').addEventListener('click', goHome);
-</script>
 
 </body>
 </html>
