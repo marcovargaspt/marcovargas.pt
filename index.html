@@ -17,25 +17,41 @@
 <meta name="cf-no-email-protection" content="true">
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
-  font-family: Inter, Helvetica Neue, Arial, sans-serif;
+  font-family: Helvetica, -apple-system, ".SFNSText-Regular", "San Francisco", "Roboto", "Segoe UI", "Helvetica Neue", "Lucida Grande", Arial, sans-serif;
+  letter-spacing: 0.02em;
   font-size: 16px;
   font-weight: 500;
   line-height: 1.5;
   color: black;
   background: white;
-  padding: 16px;
-  max-width: 600px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
 a { color: inherit; text-decoration: none; }
 a:hover { text-decoration: underline; }
 
-.home-name { text-transform: uppercase; }
-.home-role { }
-.home-email { margin-bottom: 40px; }
+.container {
+  margin: 10rem;
+  display: flex;
+  flex-direction: column;
+}
 
+.row {
+  display: grid;
+  grid-template-columns: 66% 34%;
+  gap: 30px;
+}
+
+.col-text {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.home-name { }
+.home-email { margin-bottom: 40px; }
 .home-section { margin-bottom: 40px; }
 .home-label { margin-bottom: 0; }
 
@@ -62,31 +78,42 @@ a:hover { text-decoration: underline; }
 .vida-body { display: none; margin-top: 40px; }
 .vida-body p { margin-bottom: 20px; }
 .vida-body p:last-child { margin-bottom: 0; }
+
+@media (max-width: 900px) {
+  .container { margin: 2rem; }
+  .row { grid-template-columns: 1fr; }
+}
 </style>
 
 </head>
 <body>
 
-<div id="home">
-  <div class="home-name">Marco Vargas</div>
-  <div class="home-role">Architect</div>
-  <div class="home-email">
-    <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;">&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;</a>
-  </div>
+<div class="container">
+  <div class="row">
+    <div class="col-text">
 
-  <div class="home-section">
-    <div class="home-label">Selected work</div>
-    <a href="https://hdl.handle.net/10216/166408" target="_blank" class="project-link">Villa Mater</a>
-  </div>
+      <div class="home-name">MARCO VARGAS</div>
+      <div class="home-role">Architect</div>
+      <div class="home-email">
+        <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;">&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;</a>
+      </div>
 
-  <div class="home-section">
-    <button class="text-link" id="vida-link">Vida</button>
-    <div class="vida-body" id="vida-body">
-      <p>Marco Vargas was born in 1991. He is a Portuguese architect who completed his studies at the Faculty of Architecture of the University of Porto (FAUP) in 2025. His master's thesis, "Villa Mater: a house in the Azores," was supervised by the Architect Patrícia da Silva, lecturer at the Accademia di Architettura, USI Mendrisio. The project reflects his deep interest in essential architecture that needs nothing else to be meaningful.</p>
-      <p>During his academic training, he participated in two editions of Porto Academy under the guidance of architects Raphael Zuber and Kersten Geers. In 2016, he won the first prize in two competitions: the GO! Architecture for AEFAUP and the Warsaw Under Construction Festival 8, during his internship with BUDCUD in Kraków. Both proposals placed a strong emphasis on the experience of space.</p>
-      <p>His professional career began as a junior architect at EBEJER BONNICI in Malta. Among his works are the renovation of an apartment in a historic building in London for the artist Anna Pesonen, the restoration and renovation of an 18th-century palazzo in Birkirkara, and the design of three single-family residences in Naxxar.</p>
-      <p>He currently collaborates in the creation of spaces idealized by the artist Ellen Nielsen.</p>
-      <p>His practice integrates architecture specialised in BIM, maintaining an approach centred on the relationship between space, meaning and emotion.</p>
+      <div class="home-section">
+        <div class="home-label">Selected work</div>
+        <a href="https://hdl.handle.net/10216/166408" target="_blank" class="project-link">Villa Mater</a>
+      </div>
+
+      <div class="home-section">
+        <button class="text-link" id="vida-link">Vida</button>
+        <div class="vida-body" id="vida-body">
+          <p>Marco Vargas was born in 1991. He is a Portuguese architect who completed his studies at the Faculty of Architecture of the University of Porto (FAUP) in 2025. His master's thesis, "Villa Mater: a house in the Azores," was supervised by the Architect Patrícia da Silva, lecturer at the Accademia di Architettura, USI Mendrisio. The project reflects his deep interest in essential architecture that needs nothing else to be meaningful.</p>
+          <p>During his academic training, he participated in two editions of Porto Academy under the guidance of architects Raphael Zuber and Kersten Geers. In 2016, he won the first prize in two competitions: the GO! Architecture for AEFAUP and the Warsaw Under Construction Festival 8, during his internship with BUDCUD in Kraków. Both proposals placed a strong emphasis on the experience of space.</p>
+          <p>His professional career began as a junior architect at EBEJER BONNICI in Malta. Among his works are the renovation of an apartment in a historic building in London for the artist Anna Pesonen, the restoration and renovation of an 18th-century palazzo in Birkirkara, and the design of three single-family residences in Naxxar.</p>
+          <p>He currently collaborates in the creation of spaces ideated by the artist Ellen Nielsen.</p>
+          <p>His practice integrates architecture specialised in BIM, maintaining an approach centred on the relationship between space, meaning and emotion.</p>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
