@@ -48,26 +48,28 @@
         #bottomRight { bottom: 2rem; right: 2rem; pointer-events: all; }
         #bottomLeft { bottom: 2rem; left: 2rem; pointer-events: all; }
 
-        a {
+        a,
+        button {
             color: inherit;
+            font: inherit;
+            text-transform: inherit;
             text-decoration: none;
-            pointer-events: all;
+            background: transparent;
+            border: 0;
+            outline: none;
+            box-shadow: none;
             -webkit-tap-highlight-color: transparent;
+        }
+
+        a {
+            pointer-events: all;
             cursor: none;
         }
 
         button {
-            appearance: none;
-            border: 0;
-            background: transparent;
-            color: inherit;
-            font: inherit;
-            text-transform: inherit;
+            pointer-events: all;
             cursor: none;
-            text-decoration: none;
-            outline: none;
-            box-shadow: none;
-            -webkit-tap-highlight-color: transparent;
+            appearance: none;
         }
 
         a:focus,
@@ -77,16 +79,6 @@
             outline: none;
             box-shadow: none;
             text-decoration: none;
-        }
-
-        #infoFull {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        #infoLink:hover #infoFull,
-        #infoLink:focus-visible #infoFull {
-            opacity: 1;
         }
 
         .interactive-link {
@@ -99,6 +91,16 @@
         .interactive-link:hover,
         .interactive-link:focus-visible {
             border-bottom-color: rgba(194, 194, 194, 0.55);
+        }
+
+        #infoFull {
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        #infoLink:hover #infoFull,
+        #infoLink:focus-visible #infoFull {
+            opacity: 1;
         }
 
         #aboutWrap {
@@ -183,8 +185,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            max-width: 480px;
             width: min(90vw, 480px);
+            max-width: 480px;
             max-height: calc(100vh - 4rem);
             overflow-y: auto;
             scrollbar-width: none;
@@ -209,6 +211,7 @@
             white-space: pre-wrap;
             text-transform: uppercase;
             text-align: left;
+            padding-bottom: 0.75rem;
         }
 
         #poemClose {
@@ -230,7 +233,6 @@
             width: 20px;
             height: 20px;
             display: inline-block;
-            pointer-events: all;
             opacity: 1;
             transition: opacity 0.2s ease;
         }
@@ -310,6 +312,7 @@
             #poemOverlay {
                 width: calc(100vw - 3rem);
                 max-height: calc(100vh - 3rem);
+                padding-bottom: 3rem;
             }
 
             body.poem-open #topLeft,
@@ -324,11 +327,15 @@
             }
 
             #poemClose {
-                width: auto;
-                margin-left: auto;
-                margin-bottom: 0.75rem;
-                position: static;
+                width: fit-content;
+                margin: 0.75rem auto 0;
+                position: sticky;
+                top: auto;
+                bottom: 0;
                 display: block;
+                text-align: center;
+                background: #000;
+                padding: 0.25rem 0.85rem;
             }
 
             .ui-icon {
@@ -341,7 +348,6 @@
             html, body,
             a,
             button,
-            #aboutLabel,
             .ui-icon {
                 cursor: auto;
             }
@@ -598,6 +604,7 @@ as I always was</pre>
         let mx = 0;
         let my = 0;
         let cursorInfluence = 0;
+
         let audioReady = false;
         let targetPlaying = false;
         let ringMix = 0;
@@ -614,13 +621,9 @@ as I always was</pre>
 
         for (let i = 0; i < N; i++) {
             pAngle[i] = Math.random() * Math.PI * 2;
-            const raw = -BAND_IN + Math.random() * (BAND_IN + BAND_OUT);
-            const extra = Math.random() < 0.12 ? (Math.random() - 0.5) * 1.2 : 0;
-            pRad[i] = raw + extra;
+            pRad[i] = (-BAND_IN + Math.random() * (BAND_IN + BAND_OUT)) + (Math.random() < 0.12 ? (Math.random() - 0.5) * 1.2 : 0);
             pAOff[i] = (Math.random() - 0.5) * 0.6;
-
-            const spd = 0.0008 + Math.random() * 0.006;
-            pSpeed[i] = Math.random() < 0.12 ? -spd : spd;
+            pSpeed[i] = (Math.random() < 0.12 ? -1 : 1) * (0.0008 + Math.random() * 0.006);
 
             freePos[i * 3] = (Math.random() - 0.5) * FIELD_X * 1.8;
             freePos[i * 3 + 1] = (Math.random() - 0.5) * FIELD_Y * 1.8;
@@ -716,9 +719,11 @@ as I always was</pre>
             Tone.Destination.mute = true;
             Tone.Transport.stop();
             Tone.Transport.cancel();
+
             if (Tone.context.state !== "suspended") {
                 await Tone.context.rawContext.suspend();
             }
+
             audioReady = true;
         }
 
@@ -756,7 +761,6 @@ as I always was</pre>
             brownNoise.stop();
             whiteNoise.stop();
             pinkNoise.stop();
-
             masterGain.gain.value = 0;
             Tone.Destination.mute = true;
 
@@ -784,6 +788,7 @@ as I always was</pre>
 
             if (audioReady && masterGain && brownGain && whiteGain && pinkGain) {
                 const now = Tone.now();
+
                 brownGain.gain.cancelAndHoldAtTime(now);
                 whiteGain.gain.cancelAndHoldAtTime(now);
                 pinkGain.gain.cancelAndHoldAtTime(now);
@@ -824,11 +829,9 @@ as I always was</pre>
             if (dist < 1.1) {
                 zone = "center";
             } else if (dist > ringRadius - 1.15 && dist < ringRadius + 1.35) {
-                if (Math.abs(my) > Math.abs(mx)) {
-                    zone = my > 0 ? "top" : "bottom";
-                } else {
-                    zone = mx > 0 ? "right" : "left";
-                }
+                zone = Math.abs(my) > Math.abs(mx)
+                    ? (my > 0 ? "top" : "bottom")
+                    : (mx > 0 ? "right" : "left");
             }
 
             const now = Tone.now();
@@ -914,12 +917,10 @@ as I always was</pre>
                     freePos[ix] = THREE.MathUtils.clamp(freePos[ix], -FIELD_X, FIELD_X);
                     vel[ix] *= -0.82;
                 }
-
                 if (Math.abs(freePos[ix + 1]) > FIELD_Y) {
                     freePos[ix + 1] = THREE.MathUtils.clamp(freePos[ix + 1], -FIELD_Y, FIELD_Y);
                     vel[ix + 1] *= -0.82;
                 }
-
                 if (Math.abs(freePos[ix + 2]) > FIELD_Z) {
                     freePos[ix + 2] = THREE.MathUtils.clamp(freePos[ix + 2], -FIELD_Z, FIELD_Z);
                     vel[ix + 2] *= -0.8;
@@ -948,11 +949,8 @@ as I always was</pre>
                 dX[i] *= (1 - RET_SPD);
                 dY[i] *= (1 - RET_SPD);
 
-                const ringX = tx + dX[i];
-                const ringY = ty + dY[i];
-
-                pos[ix] = THREE.MathUtils.lerp(freePos[ix], ringX, ringMix);
-                pos[ix + 1] = THREE.MathUtils.lerp(freePos[ix + 1], ringY, ringMix);
+                pos[ix] = THREE.MathUtils.lerp(freePos[ix], tx + dX[i], ringMix);
+                pos[ix + 1] = THREE.MathUtils.lerp(freePos[ix + 1], ty + dY[i], ringMix);
                 pos[ix + 2] = THREE.MathUtils.lerp(freePos[ix + 2], 0, ringMix);
             }
 
@@ -997,9 +995,12 @@ as I always was</pre>
         }
 
         soundIcon.addEventListener("click", async () => {
+            if (poemOverlay.classList.contains("visible")) {
+                closePoem();
+            }
+
             if (!targetPlaying) {
                 if (!audioReady) await initAudio();
-
                 if (Tone.context.state === "suspended") {
                     await Tone.context.rawContext.resume();
                 }
@@ -1010,12 +1011,9 @@ as I always was</pre>
 
                 masterGain.gain.cancelAndHoldAtTime(Tone.now());
                 masterGain.gain.rampTo(0.12, 1.4);
-
-                body.classList.add("sound-active");
             } else {
                 await silenceAudio();
                 resetFreeField();
-                body.classList.remove("sound-active");
             }
 
             setIcon(targetPlaying);
@@ -1023,6 +1021,12 @@ as I always was</pre>
 
         poemTrigger.addEventListener("click", openPoem);
         poemClose.addEventListener("click", closePoem);
+
+        workWrap.addEventListener("click", () => {
+            if (poemOverlay.classList.contains("visible")) {
+                closePoem();
+            }
+        });
 
         document.addEventListener("keydown", (e) => {
             if (e.key === "Escape") closePoem();
