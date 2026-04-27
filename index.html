@@ -132,7 +132,7 @@
         #aboutWrap:focus-within #aboutFull,
         #aboutWrap.open #aboutFull {
             opacity: 1;
-            max-height: 140px;
+            max-height: 160px;
             margin-top: 0.4rem;
         }
 
@@ -183,8 +183,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: min(90vw, 480px);
             max-width: 480px;
+            width: min(90vw, 480px);
             max-height: calc(100vh - 4rem);
             overflow-y: auto;
             scrollbar-width: none;
@@ -214,8 +214,8 @@
         #poemClose {
             display: block;
             width: 100%;
-            margin-bottom: 1rem;
             text-align: right;
+            margin-bottom: 1rem;
             opacity: 0.5;
             position: sticky;
             top: 0;
@@ -312,9 +312,23 @@
                 max-height: calc(100vh - 3rem);
             }
 
+            body.poem-open #topLeft,
+            body.poem-open #bottomLeft {
+                opacity: 0;
+                pointer-events: none;
+            }
+
             #poemOverlay pre {
                 font-size: 9px;
                 line-height: 1.65;
+            }
+
+            #poemClose {
+                width: auto;
+                margin-left: auto;
+                margin-bottom: 0.75rem;
+                position: static;
+                display: block;
             }
 
             .ui-icon {
@@ -378,7 +392,7 @@
     </div>
 
     <div id="poemOverlay" aria-hidden="true">
-        <button id="poemClose" type="button">Close x</button>
+        <button id="poemClose" type="button">X</button>
         <pre>Art will always heal me.
 
 When asked who I am
@@ -638,9 +652,9 @@ as I always was</pre>
 
         function computeRingRadius() {
             const minSide = Math.min(innerWidth, innerHeight);
-            if (minSide <= 420) return 2.45;
-            if (minSide <= 520) return 2.85;
-            if (minSide <= 700) return 3.25;
+            if (minSide <= 420) return 2.15;
+            if (minSide <= 520) return 2.55;
+            if (minSide <= 700) return 3.05;
             return BASE_RING_R;
         }
 
@@ -671,11 +685,13 @@ as I always was</pre>
 
         function openPoem() {
             closeWorkDrawer();
+            body.classList.add("poem-open");
             poemOverlay.classList.add("visible");
             poemOverlay.setAttribute("aria-hidden", "false");
         }
 
         function closePoem() {
+            body.classList.remove("poem-open");
             poemOverlay.classList.remove("visible");
             poemOverlay.setAttribute("aria-hidden", "true");
         }
@@ -736,6 +752,7 @@ as I always was</pre>
 
         function stopNoises() {
             if (!brownNoise) return;
+
             brownNoise.stop();
             whiteNoise.stop();
             pinkNoise.stop();
@@ -897,10 +914,12 @@ as I always was</pre>
                     freePos[ix] = THREE.MathUtils.clamp(freePos[ix], -FIELD_X, FIELD_X);
                     vel[ix] *= -0.82;
                 }
+
                 if (Math.abs(freePos[ix + 1]) > FIELD_Y) {
                     freePos[ix + 1] = THREE.MathUtils.clamp(freePos[ix + 1], -FIELD_Y, FIELD_Y);
                     vel[ix + 1] *= -0.82;
                 }
+
                 if (Math.abs(freePos[ix + 2]) > FIELD_Z) {
                     freePos[ix + 2] = THREE.MathUtils.clamp(freePos[ix + 2], -FIELD_Z, FIELD_Z);
                     vel[ix + 2] *= -0.8;
@@ -980,6 +999,7 @@ as I always was</pre>
         soundIcon.addEventListener("click", async () => {
             if (!targetPlaying) {
                 if (!audioReady) await initAudio();
+
                 if (Tone.context.state === "suspended") {
                     await Tone.context.rawContext.resume();
                 }
