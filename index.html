@@ -13,7 +13,7 @@
     <meta property="og:url" content="https://www.marcovargas.pt">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Marco Vargas">
-    <meta name="twitter:description" content="Marco Vargas is an artist and architect working across space, light, sound and technology. His practice moves between architecture and contemporary art, exploring the conditions under which presence, silence and perception become form.">
+    <meta name="twitter:description" content="Marco Vargas is an artist and architect working across space, light, sound and technology.">
     <link rel="alternate" hreflang="en" href="https://hdl.handle.net/10216/166408">
     <meta name="cf-no-email-protection" content="true">
     <style>
@@ -64,6 +64,639 @@
         #aboutWrap:hover #aboutLabel, #aboutWrap.open #aboutLabel { border-bottom-color: rgba(194,194,194,0.55); }
         #aboutFull {
             opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; max-width: 280px;
+            transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
+        }
+        #aboutWrap:hover #aboutFull, #aboutWrap.open #aboutFull { opacity: 1; max-height: 140px; margin-top: 0.4rem; }
+
+        #workWrap { display: inline-flex; flex-direction: column; align-items: flex-end; }
+        #workItems { display: flex; flex-direction: column; align-items: flex-end; }
+        .work-item {
+            display: block; max-height: 0; overflow: hidden;
+            opacity: 0; pointer-events: none;
+            transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
+        }
+        #workWrap:hover .work-item, #workWrap.open .work-item { max-height: 40px; opacity: 1; pointer-events: all; }
+        #workWrap:hover #poemTrigger, #workWrap.open #poemTrigger { margin-top: 0.35rem; }
+        #workWrap:hover #workLink,    #workWrap.open #workLink    { margin-top: 0.15rem; }
+
+        /* poem overlay */
+        #poemOverlay {
+            position: fixed; z-index: 200;
+            top: 50%; left: 50%; transform: translate(-50%, -50%);
+            max-width: 480px; width: min(90vw, 480px);
+            max-height: calc(100vh - 4rem); overflow-y: auto; scrollbar-width: none;
+            opacity: 0; pointer-events: none; transition: opacity 0.5s ease;
+        }
+        #poemOverlay::-webkit-scrollbar { display: none; }
+        #poemOverlay.visible { opacity: 1; pointer-events: all; }
+        #poemOverlay pre {
+            font-family: inherit; font-size: 10px; line-height: 2;
+            white-space: pre-wrap; text-transform: uppercase; text-align: left; padding-bottom: 0.75rem;
+        }
+
+        /* close button — fixed inside overlay, always visible during scroll */
+        #poemClose {
+            display: block; width: 100%; text-align: right;
+            padding: 0.4rem 0 0.8rem;
+            opacity: 0.5;
+            position: sticky; top: 0;
+            background: #000;
+            z-index: 10;
+            cursor: none;
+        }
+        #poemClose:hover { opacity: 1; }
+
+        /* hide about+info when poem open — both desktop and mobile */
+        body.poem-open #topLeft,
+        body.poem-open #bottomLeft { opacity: 0; pointer-events: none; }
+
+        .ui-icon {
+            width: 20px; height: 20px; display: inline-block;
+            pointer-events: all; cursor: none; opacity: 1; transition: opacity 0.2s ease;
+        }
+        .ui-icon:hover { opacity: 0.45; }
+        .ui-icon svg { width: 100%; height: 100%; stroke: #c2c2c2; fill: none; stroke-width: 1.2; }
+
+        @keyframes sw { 0%,100%{opacity:.3} 50%{opacity:1} }
+        .wave { animation: sw 0.6s ease-in-out infinite; }
+        .wave:nth-child(2) { animation-delay: .1s; }
+        .wave:nth-child(3) { animation-delay: .2s; }
+
+        /* cursor cross */
+        #cursorDot {
+            position: fixed; top: 0; left: 0;
+            width: 18px; height: 18px;
+            transform: translate(-50%, -50%);
+            pointer-events: none; z-index: 300; opacity: 1; transition: opacity 0.2s ease;
+        }
+        #cursorDot::before, #cursorDot::after {
+            content: ''; position: absolute; background: rgba(194,194,194,0.55);
+        }
+        #cursorDot::before { width: 1px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
+        #cursorDot::after  { width: 100%; height: 1px; top: 50%; left: 0; transform: translateY(-50%); }
+
+        @media (max-width: 768px) {
+            html, body { font-size: 9px; }
+            .corner { max-width: min(42vw, 220px); }
+            #topLeft, #topRight, #bottomLeft, #bottomRight { max-width: min(46vw, 240px); }
+            #topLeft, #topRight { top: 1.25rem; }
+            #bottomLeft, #bottomRight { bottom: 1.25rem; }
+            #topLeft, #bottomLeft { left: 1.25rem; }
+            #topRight, #bottomRight { right: 1.25rem; }
+            #poemOverlay { width: calc(100vw - 3rem); max-height: calc(100vh - 3rem); padding-bottom: 3rem; }
+            #poemOverlay pre { font-size: 9px; line-height: 1.8; }
+            #poemClose {
+                width: fit-content; margin: 0 auto;
+                position: sticky; bottom: 0; top: auto;
+                text-align: center; padding: 0.25rem 0.85rem;
+            }
+            .ui-icon { width: 24px; height: 24px; }
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            html, body, a, button, #aboutLabel, .ui-icon { cursor: auto; }
+            #cursorDot { display: none; }
+            #aboutLabel, .interactive-link, .ui-icon { min-height: 24px; }
+        }
+    </style>
+</head>
+<body>
+    <canvas id="cv"></canvas>
+    <div id="cursorDot" aria-hidden="true"></div>
+
+    <div id="topLeft" class="corner">
+        <div id="aboutWrap">
+            <span id="aboutLabel">About</span>
+            <span id="aboutFull">Marco Vargas is an artist and architect working across space, light, sound and technology. His practice moves between architecture and contemporary art, exploring the conditions under which presence, silence and perception become form.</span>
+        </div>
+    </div>
+
+    <div id="topRight" class="corner">
+        <div id="workWrap">
+            <span>Selected Work</span>
+            <div id="workItems">
+                <button id="poemTrigger" class="work-item interactive-link" type="button">Art will always heal me</button>
+                <a id="workLink" class="work-item interactive-link" href="https://hdl.handle.net/10216/166408" target="_blank" rel="noopener noreferrer">Villa Mater</a>
+            </div>
+        </div>
+    </div>
+
+    <div id="bottomRight" class="corner">
+        <button class="ui-icon" id="soundIcon" type="button" aria-label="Toggle sound">
+            <svg viewBox="0 0 24 24"><polygon points="10,5 4,9 4,15 10,19"></polygon></svg>
+        </button>
+    </div>
+
+    <div id="bottomLeft" class="corner">
+        <a id="infoLink" class="interactive-link" href="mailto:info@marcovargas.pt">INFO<span id="infoFull">@MARCOVARGAS.PT</span></a>
+    </div>
+
+    <div id="poemOverlay" aria-hidden="true">
+        <button id="poemClose" type="button">X</button>
+        <pre>
+Art will always heal me.
+
+When asked who I am
+I say I'm nobody
+because no one can be like me.
+
+I need to renew myself
+and delete my old self to be reborn
+as a new me.
+
+Without addictions.
+
+Without hope.
+
+Without passion.
+
+Without faith.
+
+Without identity.
+
+Without morality.
+
+Without ethics.
+
+Without prejudices.
+
+Without tastes.
+
+Without emotions.
+
+Without hatred.
+
+Without anger.
+
+Without love.
+
+Without anything.
+
+To create space for the new me.
+
+To feel love.
+
+To like.
+
+And be myself again.
+
+I want to be different
+from who I was, am
+and could have been.
+
+I was already an artist.
+
+Kind.
+
+Hurt.
+
+Betrayed.
+
+Deceived.
+
+Bullied — and a bully.
+
+I worried.
+
+I didn't care.
+
+I loved.
+
+I envied.
+
+I hated.
+
+I doubted.
+
+I isolated myself.
+
+I revolted.
+
+I suffered.
+
+I sinned.
+
+I followed God
+and stopped following.
+
+I found faith
+when I was lost.
+
+I've lived and died many times
+forgetting everything.
+
+Now, I want to be myself
+and be nothing more.
+
+If I'm not myself until I die
+I don't know what else to do.
+
+And that fear.
+
+That panic.
+
+That abyss.
+
+It blocks me.
+
+It's the void
+between being myself
+and the possibility of not becoming who I am
+that torments my soul.
+
+Not living as a creative being
+gives me fear
+and makes me do nothing.
+
+I become numb.
+
+Because everything I wanted to be
+I already was.
+
+And yet I remain nobody.
+
+And nobody is who I wanted to be —
+to be everything
+that no one else can be for me.
+
+I.
+
+The artist.
+
+Finally free.
+
+As I always was.
+        </pre>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script>
+        const cv          = document.getElementById("cv");
+        const body        = document.body;
+        const cursorDot   = document.getElementById("cursorDot");
+        const aboutWrap   = document.getElementById("aboutWrap");
+        const workWrap    = document.getElementById("workWrap");
+        const soundIcon   = document.getElementById("soundIcon");
+        const poemOverlay = document.getElementById("poemOverlay");
+        const poemTrigger = document.getElementById("poemTrigger");
+        const poemClose   = document.getElementById("poemClose");
+        const isTouchLike = window.matchMedia("(hover: none), (pointer: coarse)").matches;
+
+        // ── renderer ──────────────────────────────────────────────
+        const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true });
+        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+        renderer.setSize(innerWidth, innerHeight);
+        const scene  = new THREE.Scene();
+        scene.background = new THREE.Color(0x000000);
+        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 200);
+        camera.position.z = 10;
+
+        // ── particles ─────────────────────────────────────────────
+        const N           = 6000;
+        const BASE_RING_R = 4.0;
+        const BAND_IN     = 0.25;
+        const BAND_OUT    = 0.75;
+        const REP_R       = 1.4;
+        const REP_STR     = 0.045;
+        const RET_SPD     = 0.055;
+        const FIELD_X     = 19.5;
+        const FIELD_Y     = 14;
+        const FIELD_Z     = 12;
+
+        const basePos = new Float32Array(N * 3);
+        const freePos = new Float32Array(N * 3);
+        const pos     = new Float32Array(N * 3);
+        const vel     = new Float32Array(N * 3);
+        const pAngle  = new Float32Array(N);
+        const pRad    = new Float32Array(N);
+        const pAOff   = new Float32Array(N);
+        const pSpeed  = new Float32Array(N);
+        const dX      = new Float32Array(N);
+        const dY      = new Float32Array(N);
+
+        let ringRadius = BASE_RING_R;
+        let mx = 0, my = 0, cursorInfluence = 0;
+        let audioReady = false, targetPlaying = false, ringMix = 0;
+        let brownNoise = null, whiteNoise = null, pinkNoise = null;
+        let brownGain  = null, whiteGain  = null, pinkGain  = null;
+        let filterNode = null, masterGain = null;
+
+        for (let i = 0; i < N; i++) {
+            pAngle[i] = Math.random() * Math.PI * 2;
+            pRad[i]   = (-BAND_IN + Math.random() * (BAND_IN + BAND_OUT)) + (Math.random() < 0.12 ? (Math.random() - 0.5) * 1.2 : 0);
+            pAOff[i]  = (Math.random() - 0.5) * 0.6;
+            pSpeed[i] = (Math.random() < 0.12 ? -1 : 1) * (0.0008 + Math.random() * 0.006);
+            freePos[i*3]   = (Math.random()-0.5)*FIELD_X*1.8;
+            freePos[i*3+1] = (Math.random()-0.5)*FIELD_Y*1.8;
+            freePos[i*3+2] = (Math.random()-0.5)*FIELD_Z*1.8;
+            basePos[i*3]   = freePos[i*3];   basePos[i*3+1] = freePos[i*3+1]; basePos[i*3+2] = freePos[i*3+2];
+            pos[i*3]       = freePos[i*3];   pos[i*3+1]     = freePos[i*3+1]; pos[i*3+2]     = freePos[i*3+2];
+            vel[i*3]       = (Math.random()-0.5)*0.018;
+            vel[i*3+1]     = (Math.random()-0.5)*0.018;
+            vel[i*3+2]     = (Math.random()-0.5)*0.012;
+        }
+
+        const geo = new THREE.BufferGeometry();
+        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
+        scene.add(new THREE.Points(geo, new THREE.PointsMaterial({ size: 0.024, color: 0xc2c2c2, sizeAttenuation: true })));
+
+        function computeRingRadius() {
+            const m = Math.min(innerWidth, innerHeight);
+            if (m <= 420) return 2.15;
+            if (m <= 520) return 2.55;
+            if (m <= 700) return 3.05;
+            return BASE_RING_R;
+        }
+
+        function updateMousePosition(cx, cy) {
+            const nx = (cx / innerWidth) * 2 - 1;
+            const ny = -(cy / innerHeight) * 2 + 1;
+            const v  = new THREE.Vector3(nx, ny, 0.5).unproject(camera);
+            const t  = -camera.position.z / (v.z - camera.position.z);
+            mx = camera.position.x + (v.x - camera.position.x) * t;
+            my = camera.position.y + (v.y - camera.position.y) * t;
+            cursorInfluence = 1;
+            if (!isTouchLike) cursorDot.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+        }
+
+        // ── UI helpers ────────────────────────────────────────────
+        function closeAbout() { aboutWrap.classList.remove("open"); }
+        function closeWork()  { workWrap.classList.remove("open"); }
+        function openAbout()  { closeWork(); aboutWrap.classList.add("open"); }
+        function openWork()   { closeAbout(); workWrap.classList.add("open"); }
+
+        function openPoem() {
+            closeWork(); closeAbout();
+            body.classList.add("poem-open");
+            poemOverlay.classList.add("visible");
+            poemOverlay.setAttribute("aria-hidden", "false");
+            poemOverlay.scrollTop = 0;
+        }
+        function closePoem() {
+            body.classList.remove("poem-open");
+            poemOverlay.classList.remove("visible");
+            poemOverlay.setAttribute("aria-hidden", "true");
+        }
+
+        function resetFreeField() {
+            for (let i = 0; i < N; i++) {
+                const ix = i * 3;
+                freePos[ix] = basePos[ix]; freePos[ix+1] = basePos[ix+1]; freePos[ix+2] = basePos[ix+2];
+                vel[ix] = 0; vel[ix+1] = 0; vel[ix+2] = 0;
+                dX[i] = 0; dY[i] = 0;
+            }
+            cursorInfluence = 0;
+        }
+
+        // ── audio ─────────────────────────────────────────────────
+        async function initAudio() {
+            await Tone.start();
+            Tone.Destination.mute = true;
+            Tone.Transport.stop(); Tone.Transport.cancel();
+            if (Tone.context.state !== "suspended") await Tone.context.rawContext.suspend();
+            audioReady = true;
+        }
+
+        function buildAudioGraph() {
+            brownNoise = new Tone.Noise("brown"); whiteNoise = new Tone.Noise("white"); pinkNoise = new Tone.Noise("pink");
+            brownGain  = new Tone.Gain(0); whiteGain = new Tone.Gain(0); pinkGain = new Tone.Gain(0);
+            filterNode = new Tone.Filter({ frequency: 100, type: "lowpass", rolloff: -24 });
+            masterGain = new Tone.Gain(0);
+            brownNoise.connect(brownGain); whiteNoise.connect(whiteGain); pinkNoise.connect(pinkGain);
+            brownGain.connect(filterNode); whiteGain.connect(filterNode); pinkGain.connect(filterNode);
+            filterNode.connect(masterGain); masterGain.toDestination();
+        }
+
+        function startNoises() { if (!brownNoise) buildAudioGraph(); brownNoise.start(); whiteNoise.start(); pinkNoise.start(); }
+
+        function stopNoises() {
+            if (!brownNoise) return;
+            brownNoise.stop(); whiteNoise.stop(); pinkNoise.stop();
+            masterGain.gain.value = 0; Tone.Destination.mute = true;
+            brownNoise.dispose(); whiteNoise.dispose(); pinkNoise.dispose();
+            brownGain.dispose(); whiteGain.dispose(); pinkGain.dispose();
+            filterNode.dispose(); masterGain.dispose();
+            brownNoise = whiteNoise = pinkNoise = brownGain = whiteGain = pinkGain = filterNode = masterGain = null;
+        }
+
+        async function silenceAudio() {
+            targetPlaying = false;
+            if (audioReady && masterGain && brownGain) {
+                const now = Tone.now();
+                [brownGain, whiteGain, pinkGain, masterGain].forEach(g => { g.gain.cancelAndHoldAtTime(now); g.gain.rampTo(0, 0.08); });
+                await new Promise(r => setTimeout(r, 90));
+            }
+            Tone.Destination.mute = true; stopNoises();
+            if (audioReady) { Tone.Transport.stop(); Tone.Transport.cancel(); if (Tone.context.state !== "suspended") await Tone.context.rawContext.suspend(); }
+        }
+
+        function setIcon(on) {
+            soundIcon.innerHTML = on
+                ? `<svg viewBox="0 0 24 24"><polygon points="10,5 4,9 4,15 10,19"></polygon><line class="wave" x1="13" y1="8" x2="13" y2="16"></line><line class="wave" x1="16" y1="6" x2="16" y2="18"></line></svg>`
+                : `<svg viewBox="0 0 24 24"><polygon points="10,5 4,9 4,15 10,19"></polygon></svg>`;
+        }
+
+        // ── audio field: smooth continuous mapping ─────────────────
+        // cursor inside ring maps:
+        //   X axis: 100 Hz (left) → 3000 Hz (right), stepped by 5 Hz
+        //   Y axis: white noise (bottom) → brown noise (top)
+        //   centre: pink noise blend
+        // outside ring: slow oscillation around 100–115 Hz
+        let lastFreq = 100;
+        const FREQ_MIN = 100;
+        const FREQ_MAX = 3000;
+        const FREQ_STEP = 5;
+
+        function snapToStep(val, step) {
+            return Math.round(val / step) * step;
+        }
+
+        function updateAudioField() {
+            if (!audioReady || !brownNoise || !filterNode) return;
+
+            const dist  = Math.sqrt(mx * mx + my * my);
+            const inner = ringRadius - 1.5;
+            const outer = ringRadius + 1.5;
+
+            const now = Tone.now();
+            const rampT = 0.18; // smooth ramp time
+
+            if (dist <= outer) {
+                // normalise cursor position within ring area
+                // nx: -1 (left) to +1 (right), ny: -1 (bottom) to +1 (top)
+                const nx = THREE.MathUtils.clamp(mx / ringRadius, -1, 1);
+                const ny = THREE.MathUtils.clamp(my / ringRadius, -1, 1);
+
+                // frequency: log scale left→right, stepped by 5 Hz
+                const logMin = Math.log(FREQ_MIN);
+                const logMax = Math.log(FREQ_MAX);
+                const rawFreq = Math.exp(logMin + ((nx + 1) / 2) * (logMax - logMin));
+                const targetFreq = snapToStep(THREE.MathUtils.clamp(rawFreq, FREQ_MIN, FREQ_MAX), FREQ_STEP);
+
+                // noise blend: y axis
+                // ny = -1 → white, ny = 0 → pink, ny = +1 → brown
+                let b, w, p;
+                if (ny >= 0) {
+                    // centre to top: pink → brown
+                    b = ny;
+                    p = 1 - ny;
+                    w = 0;
+                } else {
+                    // centre to bottom: pink → white
+                    b = 0;
+                    p = 1 + ny;
+                    w = -ny;
+                }
+
+                // centre proximity bonus: boost pink near centre
+                const centreDist = Math.sqrt(nx*nx + ny*ny);
+                if (centreDist < 0.25) {
+                    const blend = 1 - centreDist / 0.25;
+                    b *= (1 - blend); w *= (1 - blend); p = p * (1 - blend) + blend;
+                }
+
+                filterNode.frequency.cancelAndHoldAtTime(now);
+                filterNode.frequency.rampTo(targetFreq, rampT);
+                lastFreq = targetFreq;
+
+                [brownGain, whiteGain, pinkGain].forEach(g => g.gain.cancelAndHoldAtTime(now));
+                brownGain.gain.rampTo(b, rampT);
+                whiteGain.gain.rampTo(w, rampT);
+                pinkGain.gain.rampTo(p, rampT);
+
+            } else {
+                // outside ring: slow oscillation 100–115 Hz, brown noise default
+                const drift = snapToStep(100 + (Math.sin(Date.now() * 0.0003) * 0.5 + 0.5) * 15, FREQ_STEP);
+                filterNode.frequency.cancelAndHoldAtTime(now);
+                filterNode.frequency.rampTo(drift, 0.6);
+                [brownGain, whiteGain, pinkGain].forEach(g => g.gain.cancelAndHoldAtTime(now));
+                brownGain.gain.rampTo(0.9, 0.6);
+                whiteGain.gain.rampTo(0,   0.6);
+                pinkGain.gain.rampTo(0,    0.6);
+            }
+        }
+
+        // ── render loop ───────────────────────────────────────────
+        function animate() {
+            requestAnimationFrame(animate);
+
+            ringMix += ((targetPlaying ? 1 : 0) - ringMix) * (targetPlaying ? 0.028 : 0.018);
+            if (ringMix < 0.001) ringMix = 0;
+            if (ringMix > 0.999) ringMix = 1;
+            cursorInfluence *= 0.9;
+            if (cursorInfluence < 0.001) cursorInfluence = 0;
+
+            for (let i = 0; i < N; i++) {
+                const ix = i * 3;
+
+                if (cursorInfluence > 0) {
+                    const ddx = mx - freePos[ix], ddy = my - freePos[ix+1];
+                    const d = Math.sqrt(ddx*ddx + ddy*ddy);
+                    if (d < 2.2 && d > 0.001) { const rep = (1 - d/2.2) * 0.007 * cursorInfluence; vel[ix] -= (ddx/d)*rep; vel[ix+1] -= (ddy/d)*rep; }
+                }
+
+                vel[ix]   += (Math.random()-0.5)*0.00035;
+                vel[ix+1] += (Math.random()-0.5)*0.00035;
+                vel[ix+2] += (Math.random()-0.5)*0.00015;
+                vel[ix] *= 0.989; vel[ix+1] *= 0.989; vel[ix+2] *= 0.989;
+
+                freePos[ix]   += vel[ix]; freePos[ix+1] += vel[ix+1]; freePos[ix+2] += vel[ix+2];
+                if (Math.abs(freePos[ix])   > FIELD_X) { freePos[ix]   = THREE.MathUtils.clamp(freePos[ix],   -FIELD_X, FIELD_X); vel[ix]   *= -0.82; }
+                if (Math.abs(freePos[ix+1]) > FIELD_Y) { freePos[ix+1] = THREE.MathUtils.clamp(freePos[ix+1], -FIELD_Y, FIELD_Y); vel[ix+1] *= -0.82; }
+                if (Math.abs(freePos[ix+2]) > FIELD_Z) { freePos[ix+2] = THREE.MathUtils.clamp(freePos[ix+2], -FIELD_Z, FIELD_Z); vel[ix+2] *= -0.8; }
+
+                pAngle[i] -= pSpeed[i];
+                const r  = ringRadius + pRad[i];
+                const a  = pAngle[i] + pAOff[i];
+                const tx = Math.cos(a) * r, ty = Math.sin(a) * r;
+
+                if (ringMix > 0.001) {
+                    const rx = tx + dX[i], ry = ty + dY[i];
+                    const rdx = rx - mx, rdy = ry - my;
+                    const rd  = Math.sqrt(rdx*rdx + rdy*rdy);
+                    const cDist = Math.sqrt(mx*mx + my*my);
+                    if (cDist > ringRadius - 1.5 && rd < REP_R && rd > 0.0001) {
+                        const f = (1 - rd / REP_R) * REP_STR;
+                        dX[i] += (rdx/rd)*f; dY[i] += (rdy/rd)*f;
+                    }
+                }
+                dX[i] *= (1 - RET_SPD); dY[i] *= (1 - RET_SPD);
+
+                pos[ix]   = THREE.MathUtils.lerp(freePos[ix],   tx + dX[i], ringMix);
+                pos[ix+1] = THREE.MathUtils.lerp(freePos[ix+1], ty + dY[i], ringMix);
+                pos[ix+2] = THREE.MathUtils.lerp(freePos[ix+2], 0,          ringMix);
+            }
+
+            if (targetPlaying) updateAudioField();
+            geo.attributes.position.needsUpdate = true;
+            renderer.render(scene, camera);
+        }
+
+        // ── events ────────────────────────────────────────────────
+        document.addEventListener("mousemove", e => updateMousePosition(e.clientX, e.clientY));
+        document.addEventListener("touchmove", e => {
+            const t = e.touches[0]; if (t) updateMousePosition(t.clientX, t.clientY);
+        }, { passive: true });
+
+        if (isTouchLike) {
+            aboutWrap.addEventListener("click", e => {
+                if (e.target.closest("#aboutFull")) return;
+                e.stopPropagation();
+                if (aboutWrap.classList.contains("open")) closeAbout(); else openAbout();
+            });
+            workWrap.addEventListener("click", e => {
+                if (e.target.closest("#poemTrigger, #workLink")) return;
+                e.stopPropagation();
+                if (workWrap.classList.contains("open")) closeWork(); else openWork();
+            });
+            document.addEventListener("click", e => {
+                if (!e.target.closest("#aboutWrap")) closeAbout();
+                if (!e.target.closest("#workWrap"))  closeWork();
+            });
+        }
+
+        soundIcon.addEventListener("click", async () => {
+            if (poemOverlay.classList.contains("visible")) closePoem();
+            if (!targetPlaying) {
+                if (!audioReady) await initAudio();
+                if (Tone.context.state === "suspended") await Tone.context.rawContext.resume();
+                await new Promise(r => setTimeout(r, 80));
+                Tone.Destination.mute = false; startNoises(); targetPlaying = true;
+                masterGain.gain.cancelAndHoldAtTime(Tone.now()); masterGain.gain.rampTo(0.12, 1.4);
+                body.classList.add("sound-active");
+            } else {
+                await silenceAudio(); resetFreeField(); body.classList.remove("sound-active");
+            }
+            setIcon(targetPlaying);
+        });
+
+        poemTrigger.addEventListener("click", openPoem);
+        poemClose.addEventListener("click", closePoem);
+
+        // clicking sound or selected work while poem is open → close poem first
+        soundIcon.addEventListener("click", () => { if (poemOverlay.classList.contains("visible")) closePoem(); }, true);
+        workWrap.addEventListener("click", e => {
+            if (poemOverlay.classList.contains("visible") && !e.target.closest("#poemTrigger, #workLink")) closePoem();
+        });
+
+        document.addEventListener("keydown", e => { if (e.key === "Escape") closePoem(); });
+        window.addEventListener("pagehide",           () => silenceAudio());
+        window.addEventListener("beforeunload",       () => silenceAudio());
+        document.addEventListener("visibilitychange", () => { if (document.hidden) silenceAudio(); });
+
+        window.addEventListener("resize", () => {
+            ringRadius = computeRingRadius();
+            camera.aspect = innerWidth / innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(innerWidth, innerHeight);
+        });
+
+        ringRadius = computeRingRadius();
+        animate();
+    </script>
+</body>
+</html>            opacity: 0; max-height: 0; overflow: hidden; margin-top: 0; max-width: 280px;
             transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
         }
         #aboutWrap:hover #aboutFull, #aboutWrap.open #aboutFull { opacity: 1; max-height: 140px; margin-top: 0.4rem; }
