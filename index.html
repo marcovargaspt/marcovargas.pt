@@ -1,1067 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Marco Vargas</title>
-    <meta name="author" content="Marco Vargas">
-    <meta name="description" content="Marco Vargas is an architect and artist working across space, light, sound and technology. Based in Portugal.">
-    <link rel="canonical" href="https://www.marcovargas.pt">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Open Graph -->
-    <meta property="og:title" content="Marco Vargas">
-    <meta property="og:description" content="Marco Vargas is an architect and artist working across space, light, sound and technology. His practice explores the conditions under which presence, silence and perception become form.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://www.marcovargas.pt">
-    <meta property="og:site_name" content="Marco Vargas">
+  <!-- SEO: Title -->
+  <title>Marco Vargas</title>
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Marco Vargas">
-    <meta name="twitter:description" content="Marco Vargas is an architect and artist working across space, light, sound and technology.">
+  <!-- SEO: Meta description -->
+  <meta name="description" content="Marco Vargas is an architect based in Portugal. His work explores contemporary architecture through projects such as Villa Mater: a House in Azores." />
 
-    <!-- Hreflang -->
-    <link rel="alternate" hreflang="en" href="https://www.marcovargas.pt">
-    <link rel="alternate" hreflang="pt" href="https://www.marcovargas.pt">
+  <!-- SEO: Keywords -->
+  <meta name="keywords" content="Marco Vargas, architect, architecture, Azores, Portugal, contemporary architecture, Villa Mater, Álvaro Siza Vieira, Peter Zumthor, Valerio Olgiati, Kazuo Shinohara, SANAA, Ebejer Bonnici" />
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "Person",
-      "name": "Marco Vargas",
-      "url": "https://www.marcovargas.pt",
-      "email": "info@marcovargas.pt",
-      "jobTitle": "Architect and Artist",
-      "address": {
-        "@type": "PostalAddress",
-        "addressCountry": "PT"
-      },
-      "sameAs": [
-        "https://hdl.handle.net/10216/166408"
-      ]
+  <!-- SEO: Author & robots -->
+  <meta name="author" content="Marco Vargas" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- SEO: Canonical -->
+  <link rel="canonical" href="https://www.marcovargas.pt/" />
+
+  <!-- SEO: Open Graph -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="Marco Vargas Architect | Architecture | Azores" />
+  <meta property="og:description" content="Marco Vargas is an architect based in the Azores whose practice engages contemporary architecture, place, and materiality. Projects include Villa Mater: a House in Azores." />
+  <meta property="og:url" content="https://www.marcovargas.pt/" />
+  <meta property="og:locale" content="en_GB" />
+
+  <!-- SEO: Structured Data — Person (Schema.org) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Marco Vargas",
+    "jobTitle": "Architect",
+    "url": "https://www.marcovargas.pt",
+    "email": "mail@marcovargas.pt",
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Azores",
+      "addressCountry": "PT"
+    },
+    "knowsAbout": [
+      "Architecture",
+      "Contemporary Architecture",
+      "Residential Architecture"
+    ],
+    "hasCreativeWork": {
+      "@type": "CreativeWork",
+      "name": "Villa Mater: a House in Azores",
+      "description": "An architectural project exploring dwelling, materiality, and place in the Azores archipelago.",
+      "genre": "Architecture"
+    },
+    "influencedBy": [
+      { "@type": "Person", "name": "Álvaro Siza Vieira" },
+      { "@type": "Person", "name": "Peter Zumthor" },
+      { "@type": "Person", "name": "Valerio Olgiati" },
+      { "@type": "Person", "name": "Kazuo Shinohara" },
+      { "@type": "Organization", "name": "SANAA" },
+      { "@type": "Person", "name": "Ebejer Bonnici" }
+    ]
+  }
+  </script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=IM+Fell+English&display=swap');
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    </script>
 
-    <meta name="cf-no-email-protection" content="true">
+    html, body {
+      height: 100%;
+      overflow: hidden;
+    }
 
-    <style>
-        /* ── Reset & Base ── */
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      background-color: #ffffff;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nimbus Roman No9 L', 'Times New Roman', serif;
+      font-size: 15px;
+      font-weight: 400;
+    }
 
-        html, body {
-            width: 100%; height: 100%; overflow: hidden;
-            background: #000;
-            font-family: "Nimbus Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 10px;
-            color: #c2c2c2;
-            text-transform: uppercase;
-            cursor: none;
-        }
+    main {
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      letter-spacing: 0.03em;
+    }
 
-        canvas { position: fixed; inset: 0; width: 100%; height: 100%; z-index: 0; }
+    h1 {
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 1.4;
+    }
 
-        /* ── Corner Blocks ── */
-        .corner {
-            position: fixed;
-            z-index: 100;
-            font-size: 10px;
-            line-height: 1.6;
-            max-width: 380px;
-            transition: opacity 0.4s ease;
-            isolation: isolate;
-        }
+    .role,
+    .email {
+      line-height: 1.4;
+    }
 
-        #topLeft    { top: 2rem; left: 2rem; }
-        #topRight   { top: 2rem; right: 2rem; text-align: right; }
-        #bottomRight { bottom: 2rem; right: 2rem; }
-        #bottomLeft  { bottom: 2rem; left: 2rem; }
+    .role {
+      color: #555555;
+    }
 
-        /* ── Links & Buttons ── */
-        a, button {
-            color: inherit;
-            text-decoration: none;
-            background: transparent;
-            border: 0;
-            font: inherit;
-            text-transform: inherit;
-            cursor: none;
-            outline: none;
-            box-shadow: none;
-            -webkit-tap-highlight-color: transparent;
-            appearance: none;
-        }
+    .email a {
+      color: #000000;
+      text-decoration: none;
+    }
 
-        a:focus-visible,
-        button:focus-visible {
-            outline: 1px solid rgba(194,194,194,0.4);
-            outline-offset: 3px;
-            border-radius: 1px;
-        }
-
-        /* ── Shared hover color ──
-           All interactive labels use this class.
-           Default: #c2c2c2
-           Hover / active: #6b6b6b (the "darker grey")
-        */
-        .ui-label {
-            display: inline-block;
-            transition: color 0.25s ease;
-            pointer-events: all;
-        }
-        .ui-label:hover,
-        .ui-label.active {
-            color: #6b6b6b;
-        }
-
-        /* ── ABOUT ── */
-        #aboutWrap {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: flex-start;
-        }
-        #aboutFull {
-            opacity: 0;
-            max-height: 0;
-            overflow: hidden;
-            margin-top: 0;
-            max-width: 280px;
-            transition: opacity 0.3s ease, max-height 0.3s ease, margin-top 0.3s ease;
-        }
-        #aboutWrap:hover #aboutFull,
-        #aboutWrap.open #aboutFull {
-            opacity: 1;
-            max-height: 140px;
-            margin-top: 0.4rem;
-        }
-
-        /* ── SELECTED WORK ── */
-        #workWrap {
-            display: inline-flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        #workItems {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-        .work-item {
-            display: block;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: max-height 0.35s ease, opacity 0.35s ease, margin 0.35s ease;
-        }
-        #workWrap:hover .work-item,
-        #workWrap.open .work-item {
-            max-height: 40px;
-            opacity: 1;
-            pointer-events: all;
-        }
-        #workWrap:hover #poemTrigger,
-        #workWrap.open #poemTrigger { margin-top: 0.35rem; }
-        #workWrap:hover #workLink,
-        #workWrap.open #workLink    { margin-top: 0.15rem; }
-
-        /* ── INFO ── */
-        #infoFull {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        #infoLink:hover #infoFull { opacity: 1; }
-
-        /* Freeze INFO color at all states — override any .ui-label inheritance */
-        #infoLink,
-        #infoLink:hover,
-        #infoLink:focus,
-        #infoLink:active,
-        #infoLink *,
-        #infoLink:hover *,
-        #infoLink:focus *,
-        #infoLink:active * {
-            color: #c2c2c2 !important;
-        }
-
-        /* ── SOUND label ── */
-        #soundLabel {
-            /* inherits .ui-label; active state set via JS class */
-        }
-
-        /* ── Poem Overlay ── */
-        #poemOverlay {
-            position: fixed;
-            z-index: 200;
-            inset: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            overflow: hidden;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-        #poemOverlay.visible {
-            opacity: 1;
-            pointer-events: all;
-        }
-
-        #poemClose {
-            position: fixed;
-            top: 2rem; right: 2rem;
-            z-index: 210;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.5s ease;
-        }
-        #poemClose:hover { opacity: 1 !important; }
-        body.poem-open #poemClose { opacity: 0.5; pointer-events: all; }
-
-        #poemScroll {
-            width: min(90vw, 480px);
-            max-height: 100vh;
-            overflow-y: auto;
-            scrollbar-width: none;
-            padding: 2rem 0 4rem;
-        }
-        #poemScroll::-webkit-scrollbar { display: none; }
-
-        #poemOverlay pre {
-            font-family: inherit;
-            font-size: 10px;
-            line-height: 2;
-            white-space: pre-wrap;
-            text-transform: uppercase;
-            text-align: left;
-        }
-
-        /* Hide corners when poem is open */
-        body.poem-open #topLeft,
-        body.poem-open #bottomLeft,
-        body.poem-open #topRight { opacity: 0; pointer-events: none; }
-
-        /* ── Custom Cursor ── */
-        #cursorDot {
-            position: fixed;
-            top: 0; left: 0;
-            width: 18px; height: 18px;
-            transform: translate(-50%, -50%);
-            pointer-events: none;
-            z-index: 300;
-        }
-        #cursorDot::before, #cursorDot::after {
-            content: '';
-            position: absolute;
-            background: rgba(194,194,194,0.55);
-        }
-        #cursorDot::before { width: 1px; height: 100%; left: 50%; top: 0; transform: translateX(-50%); }
-        #cursorDot::after  { width: 100%; height: 1px; top: 50%; left: 0; transform: translateY(-50%); }
-
-        /* ── Sound wave animation (unused now, kept for possible future) ── */
-        @keyframes sw { 0%,100%{opacity:.3} 50%{opacity:1} }
-
-        /* ── Mobile ── */
-        @media (max-width: 768px) {
-            html, body { font-size: 9px; }
-            .corner { max-width: min(42vw, 220px); }
-            #topLeft, #topRight, #bottomLeft, #bottomRight { max-width: min(46vw, 240px); }
-            #topLeft, #topRight { top: 1.25rem; }
-            #bottomLeft, #bottomRight { bottom: 1.25rem; }
-            #topLeft, #bottomLeft { left: 1.25rem; }
-            #topRight, #bottomRight { right: 1.25rem; }
-            #poemScroll { padding: 1.5rem 0 6rem; }
-            #poemOverlay pre { font-size: 9px; line-height: 1.8; }
-            #poemClose { top: 1.25rem; right: 1.25rem; }
-        }
-
-        /* Touch devices: restore native cursor, larger tap targets */
-        @media (hover: none), (pointer: coarse) {
-            html, body, a, button { cursor: auto; }
-            #cursorDot { display: none; }
-            .ui-label { min-height: 24px; }
-        }
-    </style>
+    /* Visually hidden but readable by search engines */
+    .seo-context {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  </style>
 </head>
 <body>
-    <canvas id="cv" aria-hidden="true"></canvas>
-    <div id="cursorDot" aria-hidden="true"></div>
+  <main aria-label="Marco Vargas — Architect">
 
-    <!-- TOP LEFT: About -->
-    <nav id="topLeft" class="corner" aria-label="About">
-        <div id="aboutWrap">
-            <button
-                id="aboutLabel"
-                class="ui-label"
-                aria-expanded="false"
-                aria-controls="aboutFull"
-                type="button">About</button>
-            <span id="aboutFull" role="region">Marco Vargas is an artist and architect working across space, light, sound, and technology based in Portugal.</span>
-        </div>
-    </nav>
+    <h1>Marco Vargas</h1>
+    <p class="role">Architect</p>
+    <p class="email">
+      <a href="mailto:mail@marcovargas.pt" aria-label="Send email to Marco Vargas">mail@marcovargas.pt</a>
+    </p>
 
-    <!-- TOP RIGHT: Selected Work -->
-    <nav id="topRight" class="corner" aria-label="Selected work">
-        <div id="workWrap">
-            <button
-                id="workLabel"
-                class="ui-label"
-                aria-expanded="false"
-                aria-controls="workItems"
-                type="button">Selected Work</button>
-            <div id="workItems" role="list">
-                <button
-                    id="poemTrigger"
-                    class="work-item ui-label"
-                    role="listitem"
-                    type="button"
-                    aria-label="Open poem: Art will always heal me">Art will always heal me</button>
-                <a
-                    id="workLink"
-                    class="work-item ui-label"
-                    role="listitem"
-                    href="https://hdl.handle.net/10216/166408"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label="View Villa Mater thesis (opens in new tab)">Villa Mater</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- BOTTOM RIGHT: Sound -->
-    <div id="bottomRight" class="corner">
-        <button
-            id="soundBtn"
-            class="ui-label"
-            type="button"
-            aria-label="Toggle sound"
-            aria-pressed="false">Sound</button>
+    <!-- Semantically rich, visually hidden content for SEO -->
+    <div class="seo-context">
+      <p>
+        Marco Vargas is an architect based in the Azores, Portugal, working in contemporary architecture
+        with a focus on dwelling, materiality, and place. His thesis project, Villa Mater: a House in Azores,
+        investigates the relationship between architecture and landscape in the Atlantic archipelago.
+      </p>
+      <p>
+        His architectural thinking is informed by the work of Álvaro Siza Vieira, Peter Zumthor,
+        Valerio Olgiati, Kazuo Shinohara, SANAA, Ebejer Bonnici, Patricia da Silva, Ryue Nishizawa, Junya Ishigami, Go Hasegawa and Tomoaki Uno — architects whose practices
+        engage with silence, structure, and the poetics of space.
+      </p>
     </div>
 
-    <!-- BOTTOM LEFT: Info / Email -->
-    <div id="bottomLeft" class="corner">
-        <a
-            id="infoLink"
-            class="ui-label"
-            href="mailto:info@marcovargas.pt"
-            aria-label="Email: info@marcovargas.pt">INFO<span id="infoFull" aria-hidden="true">@MARCOVARGAS.PT</span></a>
-    </div>
-
-    <!-- Poem close button (outside overlay, always fixed) -->
-    <button id="poemClose" class="ui-label" type="button" aria-label="Close poem">X</button>
-
-    <!-- Poem Overlay -->
-    <section id="poemOverlay" aria-hidden="true" aria-label="Poem: Art will always heal me">
-        <div id="poemScroll">
-            <pre aria-label="Poem text">
-Art will always heal me
-
-When asked who I am
-
-I say I'm nobody
-
-because no one can be like me
-
-I need to renew myself
-
-and delete my old self to be reborn
-
-as a new me
-
-without addictions
-
-hope
-
-passion
-
-faith
-
-identity
-
-morality
-
-ethics
-
-prejudices
-
-tastes
-
-emotions
-
-hatred
-
-anger
-
-love
-
-or anything else
-
-to create space for the new me
-
-to feel love
-
-TO like
-
-and be myself again
-
-I want to be different
-
-from who I was, AM
-
-and could have been.
-
-I was already an artist
-
-kind
-
-hurt
-
-betrayed
-
-deceived
-
-bullied
-
-and a bully
-
-I worried
-
-didn't care
-
-loved
-
-envied
-
-hated
-
-doubted
-
-isolated myself
-
-revolted
-
-suffered
-
-sinned
-
-followed God
-
-and stopped following
-
-I found faith
-
-when I was lost
-
-I've lived and died many times
-
-forgetting everything
-
-Now, I want to be myself
-
-and be nothing more
-
-if I'm not myself until I die
-
-I don't know what else to do
-
-and that fear
-
-That panic
-
-That abyss
-
-blocks me
-
-It's the void
-
-between being myself
-
-and the possibility of not becoming who I am
-
-which torments my soul.
-
-Not living as a creative being
-
-gives me fear
-
-and makes me do nothing
-
-I become numb
-
-because everything I wanted to be
-
-I already was
-
-and yet I remain nobody
-
-and nobody is who I wanted to be
-
-to be everything
-
-that no one else can be for me
-
-I
-
-the artist
-
-finally free
-
-as I always was
-            </pre>
-        </div>
-    </section>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
-    <script>
-    (function () {
-        "use strict";
-
-        /* ── DOM refs ─────────────────────────────────────────────── */
-        const cv          = document.getElementById("cv");
-        const body        = document.body;
-        const cursorDot   = document.getElementById("cursorDot");
-        const aboutWrap   = document.getElementById("aboutWrap");
-        const aboutLabel  = document.getElementById("aboutLabel");
-        const workWrap    = document.getElementById("workWrap");
-        const workLabel   = document.getElementById("workLabel");
-        const soundBtn    = document.getElementById("soundBtn");
-        const poemOverlay = document.getElementById("poemOverlay");
-        const poemTrigger = document.getElementById("poemTrigger");
-        const poemClose   = document.getElementById("poemClose");
-
-        const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-        const isMobile      = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent);
-
-        /* ── Three.js renderer ───────────────────────────────────── */
-        const renderer = new THREE.WebGLRenderer({ canvas: cv, antialias: true, powerPreference: "low-power" });
-        renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
-        renderer.setSize(innerWidth, innerHeight);
-        const scene  = new THREE.Scene();
-        scene.background = new THREE.Color(0x000000);
-        const camera = new THREE.PerspectiveCamera(60, innerWidth / innerHeight, 0.1, 200);
-        camera.position.z = 10;
-
-        /* ── Particle config ─────────────────────────────────────── */
-        const N           = 6000;
-        const BASE_RING_R = 4.0;
-        const BAND_IN     = 0.25;
-        const BAND_OUT    = 0.75;
-        const REP_R       = 1.4;
-        const REP_STR     = 0.045;
-        const RET_SPD     = 0.055;
-        const FIELD_X     = 19.5;
-        const FIELD_Y     = 14;
-        const FIELD_Z     = 12;
-
-        const basePos = new Float32Array(N * 3);
-        const freePos = new Float32Array(N * 3);
-        const pos     = new Float32Array(N * 3);
-        const vel     = new Float32Array(N * 3);
-        const pAngle  = new Float32Array(N);
-        const pRad    = new Float32Array(N);
-        const pAOff   = new Float32Array(N);
-        const pSpeed  = new Float32Array(N);
-        const dX      = new Float32Array(N);
-        const dY      = new Float32Array(N);
-
-        let ringRadius = BASE_RING_R;
-
-        /*
-         * rawCx / rawCy: raw screen pixel position updated on every pointer event.
-         * mx / my:       3-D world position (for particle repulsion).
-         * These are separate so the audio field is always mapped from raw screen
-         * coordinates (full 0..W × 0..H range), independent of camera/projection.
-         */
-        let rawCx = innerWidth  / 2;   /* start at screen centre */
-        let rawCy = innerHeight / 2;
-        let mx = 0, my = 0, cursorInfluence = 0;
-
-        let audioReady = false, targetPlaying = false, ringMix = 0;
-        let brownNoise = null, whiteNoise = null, pinkNoise = null;
-        let brownGain  = null, whiteGain  = null, pinkGain  = null;
-        let filterNode = null, masterGain = null;
-
-        /*
-         * Audio state
-         * -----------
-         * targetFreq / targetBrown / targetWhite / targetPink
-         *   — the values the spatial mapping WANTS to set (inside ring only).
-         *
-         * ringProximity  — 0..1 float that fades in when the cursor enters the
-         *   ring and fades out when it leaves. Actual Tone.js params are lerped
-         *   between the default (111 Hz, brown) and the spatial targets using
-         *   this weight, so there is never a hard switch.
-         *
-         * DEFAULT state (ringProximity = 0):
-         *   freq = 111 Hz, brown = 0.9, pink = white = 0
-         *
-         * INTERACTIVE state (ringProximity = 1):
-         *   freq / gains driven by cursor XY inside the ring
-         */
-        const DEFAULT_FREQ   = 111;
-        const DEFAULT_BROWN  = 0.9;
-        const DEFAULT_WHITE  = 0;
-        const DEFAULT_PINK   = 0;
-
-        /* Spatial targets (populated by computeSpatialTargets) */
-        let spatialFreq  = DEFAULT_FREQ;
-        let spatialBrown = DEFAULT_BROWN;
-        let spatialWhite = DEFAULT_WHITE;
-        let spatialPink  = DEFAULT_PINK;
-
-        /* Blend weight: 0 = default, 1 = full spatial */
-        let ringProximity = 0;
-
-        /* Final blended targets pushed to Tone.js each frame */
-        let targetFreq  = DEFAULT_FREQ;
-        let targetBrown = DEFAULT_BROWN;
-        let targetWhite = DEFAULT_WHITE;
-        let targetPink  = DEFAULT_PINK;
-
-        /* seed particles */
-        for (let i = 0; i < N; i++) {
-            pAngle[i] = Math.random() * Math.PI * 2;
-            pRad[i]   = (-BAND_IN + Math.random() * (BAND_IN + BAND_OUT)) +
-                        (Math.random() < 0.12 ? (Math.random() - 0.5) * 1.2 : 0);
-            pAOff[i]  = (Math.random() - 0.5) * 0.6;
-            pSpeed[i] = (Math.random() < 0.12 ? -1 : 1) * (0.0008 + Math.random() * 0.006);
-            const fx = (Math.random() - 0.5) * FIELD_X * 1.8;
-            const fy = (Math.random() - 0.5) * FIELD_Y * 1.8;
-            const fz = (Math.random() - 0.5) * FIELD_Z * 1.8;
-            freePos[i*3]   = basePos[i*3]   = pos[i*3]   = fx;
-            freePos[i*3+1] = basePos[i*3+1] = pos[i*3+1] = fy;
-            freePos[i*3+2] = basePos[i*3+2] = pos[i*3+2] = fz;
-            vel[i*3]   = (Math.random() - 0.5) * 0.018;
-            vel[i*3+1] = (Math.random() - 0.5) * 0.018;
-            vel[i*3+2] = (Math.random() - 0.5) * 0.012;
-        }
-
-        const geo = new THREE.BufferGeometry();
-        geo.setAttribute("position", new THREE.BufferAttribute(pos, 3));
-        const mat = new THREE.PointsMaterial({ size: 0.024, color: 0xc2c2c2, sizeAttenuation: true });
-        scene.add(new THREE.Points(geo, mat));
-
-        function computeRingRadius() {
-            const m = Math.min(innerWidth, innerHeight);
-            if (m <= 420) return 2.15;
-            if (m <= 520) return 2.55;
-            if (m <= 700) return 3.05;
-            return BASE_RING_R;
-        }
-
-        function updatePointerPosition(cx, cy) {
-            /* Store raw screen coords for audio mapping */
-            rawCx = cx;
-            rawCy = cy;
-            /* Project to 3-D world for particle repulsion */
-            const nx = (cx / innerWidth)  * 2 - 1;
-            const ny = -(cy / innerHeight) * 2 + 1;
-            const v  = new THREE.Vector3(nx, ny, 0.5).unproject(camera);
-            const t  = -camera.position.z / (v.z - camera.position.z);
-            mx = camera.position.x + (v.x - camera.position.x) * t;
-            my = camera.position.y + (v.y - camera.position.y) * t;
-            cursorInfluence = 1;
-            if (!isTouchDevice) {
-                cursorDot.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-            }
-        }
-
-        /* ── UI state helpers ────────────────────────────────────── */
-        function closeAbout() {
-            aboutWrap.classList.remove("open");
-            aboutLabel.setAttribute("aria-expanded", "false");
-        }
-        function closeWork() {
-            workWrap.classList.remove("open");
-            workLabel.setAttribute("aria-expanded", "false");
-        }
-        function openAbout() {
-            closeWork();                              /* always close the other first */
-            aboutWrap.classList.add("open");
-            aboutLabel.setAttribute("aria-expanded", "true");
-        }
-        function openWork() {
-            closeAbout();                             /* always close the other first */
-            workWrap.classList.add("open");
-            workLabel.setAttribute("aria-expanded", "true");
-        }
-
-        function openPoem() {
-            closeWork(); closeAbout();
-            body.classList.add("poem-open");
-            poemOverlay.classList.add("visible");
-            poemOverlay.setAttribute("aria-hidden", "false");
-            document.getElementById("poemScroll").scrollTop = 0;
-            poemClose.focus();
-        }
-        function closePoem() {
-            body.classList.remove("poem-open");
-            poemOverlay.classList.remove("visible");
-            poemOverlay.setAttribute("aria-hidden", "true");
-        }
-
-        function resetFreeField() {
-            for (let i = 0; i < N; i++) {
-                const ix = i * 3;
-                freePos[ix]   = basePos[ix];
-                freePos[ix+1] = basePos[ix+1];
-                freePos[ix+2] = basePos[ix+2];
-                vel[ix] = vel[ix+1] = vel[ix+2] = 0;
-                dX[i] = dY[i] = 0;
-            }
-            cursorInfluence = 0;
-        }
-
-        /* ── Audio ───────────────────────────────────────────────── */
-        async function initAudio() {
-            await Tone.start();
-            audioReady = true;
-        }
-
-        function buildAudioGraph() {
-            brownNoise = new Tone.Noise("brown");
-            whiteNoise = new Tone.Noise("white");
-            pinkNoise  = new Tone.Noise("pink");
-            brownGain  = new Tone.Gain(0);
-            whiteGain  = new Tone.Gain(0);
-            pinkGain   = new Tone.Gain(0);
-            filterNode = new Tone.Filter({ frequency: 111, type: "lowpass", rolloff: -24 });
-            masterGain = new Tone.Gain(0);
-
-            brownNoise.connect(brownGain);
-            whiteNoise.connect(whiteGain);
-            pinkNoise.connect(pinkGain);
-            brownGain.connect(filterNode);
-            whiteGain.connect(filterNode);
-            pinkGain.connect(filterNode);
-            filterNode.connect(masterGain);
-            masterGain.toDestination();
-        }
-
-        function startNoises() {
-            if (!brownNoise) buildAudioGraph();
-            brownNoise.start();
-            whiteNoise.start();
-            pinkNoise.start();
-        }
-
-        function teardownAudioGraph() {
-            if (!brownNoise) return;
-            try {
-                brownNoise.stop(); whiteNoise.stop(); pinkNoise.stop();
-                brownNoise.dispose(); whiteNoise.dispose(); pinkNoise.dispose();
-                brownGain.dispose(); whiteGain.dispose(); pinkGain.dispose();
-                filterNode.dispose(); masterGain.dispose();
-            } catch (_) { /* swallow dispose errors on rapid toggle */ }
-            brownNoise = whiteNoise = pinkNoise = null;
-            brownGain  = whiteGain  = pinkGain  = null;
-            filterNode = masterGain = null;
-        }
-
-        async function stopAudio() {
-            targetPlaying = false;
-            if (audioReady && masterGain) {
-                const now = Tone.now();
-                masterGain.gain.cancelAndHoldAtTime(now);
-                masterGain.gain.rampTo(0, 0.12);
-                await new Promise(r => setTimeout(r, 150));
-            }
-            teardownAudioGraph();
-        }
-
-        function setSoundActive(on) {
-            soundBtn.setAttribute("aria-pressed", String(on));
-            if (on) soundBtn.classList.add("active");
-            else    soundBtn.classList.remove("active");
-        }
-
-        /* ── Audio field ─────────────────────────────────────────────
-         *
-         * Two-zone design:
-         *
-         *   OUTSIDE ring → default state (111 Hz, brown noise)
-         *   INSIDE  ring → spatial mapping (100–3000 Hz, XY noise blend)
-         *
-         * ringProximity (0..1) cross-fades smoothly between the two states
-         * each frame, eliminating any hard boundary click or jump.
-         *
-         * "Inside the ring" is defined by the 3-D world distance of the
-         * cursor from the origin vs. ringRadius. A soft edge of ±1.5 world
-         * units gives a comfortable blend zone around the ring perimeter.
-         * ─────────────────────────────────────────────────────────── */
-        const LOG_MIN = Math.log(100);
-        const LOG_MAX = Math.log(3000);
-
-        /* Width of the blend zone on each side of the ring edge (world units) */
-        const BLEND_ZONE = 1.8;
-
-        function computeAudioTargets() {
-            /* Distance from cursor to ring centre in 3-D world space */
-            const dist = Math.sqrt(mx * mx + my * my);
-
-            /*
-             * ringProximity: 0 when outside the ring, 1 when well inside.
-             * Smoothstep over BLEND_ZONE so there is no hard edge.
-             *
-             *   dist >= ringRadius + BLEND_ZONE  →  proximity = 0 (default)
-             *   dist <= ringRadius - BLEND_ZONE  →  proximity = 1 (spatial)
-             *   between                           →  smooth 0..1
-             */
-            const outer = ringRadius + BLEND_ZONE;
-            const inner = ringRadius - BLEND_ZONE;
-            let proximity;
-            if (dist >= outer) {
-                proximity = 0;
-            } else if (dist <= inner) {
-                proximity = 1;
-            } else {
-                /* linear fade across the blend zone, then smoothstep */
-                const t = 1 - (dist - inner) / (outer - inner);
-                proximity = t * t * (3 - 2 * t);   /* smoothstep */
-            }
-
-            /* Lerp ringProximity toward computed proximity — adds temporal
-               smoothing so proximity itself never jumps (e.g. on fast entry) */
-            const proximitySpeed = 0.04;   /* ~40 frames to fully transition at 60 fps */
-            ringProximity += (proximity - ringProximity) * proximitySpeed;
-            if (ringProximity < 0.001) ringProximity = 0;
-            if (ringProximity > 0.999) ringProximity = 1;
-
-            /* ── Spatial targets (computed from 3-D world XY, ring-normalised) ── */
-            /* Normalise cursor position to –1..1 relative to ring radius */
-            const nx = THREE.MathUtils.clamp(mx / ringRadius, -1, 1);
-            const ny = THREE.MathUtils.clamp(my / ringRadius, -1, 1);
-
-            /* X → frequency (log scale, 100 Hz left, 3000 Hz right) */
-            spatialFreq = Math.exp(LOG_MIN + ((nx + 1) / 2) * (LOG_MAX - LOG_MIN));
-            spatialFreq = Math.max(100, Math.min(3000, spatialFreq));
-
-            /* Y → noise blend: top=brown, centre=pink, bottom=white */
-            /* ny: +1 = top, –1 = bottom */
-            if (ny >= 0) {
-                spatialBrown = ny;
-                spatialPink  = 1 - ny;
-                spatialWhite = 0;
-            } else {
-                spatialBrown = 0;
-                spatialPink  = 1 + ny;
-                spatialWhite = -ny;
-            }
-
-            /* ── Blend default ↔ spatial using ringProximity ── */
-            targetFreq  = DEFAULT_FREQ  + ringProximity * (spatialFreq  - DEFAULT_FREQ);
-            targetBrown = DEFAULT_BROWN + ringProximity * (spatialBrown - DEFAULT_BROWN);
-            targetWhite = DEFAULT_WHITE + ringProximity * (spatialWhite - DEFAULT_WHITE);
-            targetPink  = DEFAULT_PINK  + ringProximity * (spatialPink  - DEFAULT_PINK);
-        }
-
-        /*
-         * Push blended targets to Tone.js.
-         * rampT of 80 ms gives smooth per-frame following with no clicks.
-         */
-        function applyAudioRamp() {
-            if (!audioReady || !filterNode) return;
-            const now   = Tone.now();
-            const rampT = 0.08;
-
-            filterNode.frequency.cancelAndHoldAtTime(now);
-            filterNode.frequency.rampTo(targetFreq, rampT);
-
-            brownGain.gain.cancelAndHoldAtTime(now); brownGain.gain.rampTo(targetBrown, rampT);
-            whiteGain.gain.cancelAndHoldAtTime(now); whiteGain.gain.rampTo(targetWhite, rampT);
-            pinkGain.gain.cancelAndHoldAtTime(now);  pinkGain.gain.rampTo(targetPink,  rampT);
-        }
-
-        /* ── Render loop ─────────────────────────────────────────── */
-        function animate() {
-            requestAnimationFrame(animate);
-
-            ringMix += ((targetPlaying ? 1 : 0) - ringMix) * (targetPlaying ? 0.028 : 0.018);
-            if (ringMix < 0.001) ringMix = 0;
-            if (ringMix > 0.999) ringMix = 1;
-
-            cursorInfluence *= 0.9;
-            if (cursorInfluence < 0.001) cursorInfluence = 0;
-
-            for (let i = 0; i < N; i++) {
-                const ix = i * 3;
-
-                if (cursorInfluence > 0) {
-                    const ddx = mx - freePos[ix];
-                    const ddy = my - freePos[ix+1];
-                    const d   = Math.sqrt(ddx*ddx + ddy*ddy);
-                    if (d < 2.2 && d > 0.001) {
-                        const rep = (1 - d / 2.2) * 0.007 * cursorInfluence;
-                        vel[ix]   -= (ddx/d) * rep;
-                        vel[ix+1] -= (ddy/d) * rep;
-                    }
-                }
-
-                vel[ix]   += (Math.random() - 0.5) * 0.00035;
-                vel[ix+1] += (Math.random() - 0.5) * 0.00035;
-                vel[ix+2] += (Math.random() - 0.5) * 0.00015;
-                vel[ix] *= 0.989; vel[ix+1] *= 0.989; vel[ix+2] *= 0.989;
-
-                freePos[ix]   += vel[ix];
-                freePos[ix+1] += vel[ix+1];
-                freePos[ix+2] += vel[ix+2];
-
-                if (Math.abs(freePos[ix])   > FIELD_X) { freePos[ix]   = THREE.MathUtils.clamp(freePos[ix],   -FIELD_X, FIELD_X); vel[ix]   *= -0.82; }
-                if (Math.abs(freePos[ix+1]) > FIELD_Y) { freePos[ix+1] = THREE.MathUtils.clamp(freePos[ix+1], -FIELD_Y, FIELD_Y); vel[ix+1] *= -0.82; }
-                if (Math.abs(freePos[ix+2]) > FIELD_Z) { freePos[ix+2] = THREE.MathUtils.clamp(freePos[ix+2], -FIELD_Z, FIELD_Z); vel[ix+2] *= -0.8; }
-
-                pAngle[i] -= pSpeed[i];
-                const r  = ringRadius + pRad[i];
-                const a  = pAngle[i] + pAOff[i];
-                const tx = Math.cos(a) * r;
-                const ty = Math.sin(a) * r;
-
-                if (ringMix > 0.001) {
-                    const rx = tx + dX[i], ry = ty + dY[i];
-                    const rdx = rx - mx,   rdy = ry - my;
-                    const rd  = Math.sqrt(rdx*rdx + rdy*rdy);
-                    const cDist = Math.sqrt(mx*mx + my*my);
-                    if (cDist > ringRadius - 1.5 && rd < REP_R && rd > 0.0001) {
-                        const f = (1 - rd / REP_R) * REP_STR;
-                        dX[i] += (rdx/rd) * f;
-                        dY[i] += (rdy/rd) * f;
-                    }
-                }
-                dX[i] *= (1 - RET_SPD);
-                dY[i] *= (1 - RET_SPD);
-
-                pos[ix]   = THREE.MathUtils.lerp(freePos[ix],   tx + dX[i], ringMix);
-                pos[ix+1] = THREE.MathUtils.lerp(freePos[ix+1], ty + dY[i], ringMix);
-                pos[ix+2] = THREE.MathUtils.lerp(freePos[ix+2], 0,          ringMix);
-            }
-
-            /* Audio: compute targets from screen position, then ramp */
-            if (targetPlaying) {
-                computeAudioTargets();
-                applyAudioRamp();
-            }
-
-            geo.attributes.position.needsUpdate = true;
-            renderer.render(scene, camera);
-        }
-
-        /* ── Event listeners ─────────────────────────────────────── */
-        document.addEventListener("mousemove", e => updatePointerPosition(e.clientX, e.clientY));
-        document.addEventListener("touchmove", e => {
-            const t = e.touches[0];
-            if (t) updatePointerPosition(t.clientX, t.clientY);
-        }, { passive: true });
-
-        /*
-         * Touch tap handling for About / Selected Work.
-         *
-         * openAbout() and openWork() already call each other's close,
-         * so mutual exclusion is guaranteed at the state-helper level.
-         * The document-level click listener collapses whichever is open
-         * when the user taps anywhere outside.
-         */
-        if (isTouchDevice) {
-            aboutLabel.addEventListener("click", e => {
-                e.stopPropagation();
-                if (aboutWrap.classList.contains("open")) closeAbout();
-                else openAbout();   /* openAbout closes work internally */
-            });
-            workLabel.addEventListener("click", e => {
-                e.stopPropagation();
-                if (workWrap.classList.contains("open")) closeWork();
-                else openWork();    /* openWork closes about internally */
-            });
-            /* Collapse both when tapping outside either panel */
-            document.addEventListener("click", e => {
-                if (!e.target.closest("#aboutWrap")) closeAbout();
-                if (!e.target.closest("#workWrap"))  closeWork();
-            });
-        }
-
-        /* Sound toggle */
-        soundBtn.addEventListener("click", async () => {
-            if (body.classList.contains("poem-open")) closePoem();
-
-            if (!targetPlaying) {
-                if (!audioReady) await initAudio();
-                if (Tone.context.state === "suspended") {
-                    await Tone.context.rawContext.resume();
-                }
-                await new Promise(r => setTimeout(r, 60));
-
-                startNoises();
-
-                /* Hard-set initial state: 111 Hz default, no spatial mapping yet */
-                const now = Tone.now();
-                filterNode.frequency.setValueAtTime(DEFAULT_FREQ, now);
-                masterGain.gain.setValueAtTime(0, now);
-                brownGain.gain.setValueAtTime(0, now);
-                whiteGain.gain.setValueAtTime(0, now);
-                pinkGain.gain.setValueAtTime(0, now);
-
-                /* Reset proximity so spatial mapping starts from zero */
-                ringProximity = 0;
-                targetFreq    = DEFAULT_FREQ;
-                targetBrown   = DEFAULT_BROWN;
-                targetWhite   = DEFAULT_WHITE;
-                targetPink    = DEFAULT_PINK;
-
-                /* Fade in master and default noise over 1.6 s */
-                masterGain.gain.rampTo(0.12,         1.6);
-                brownGain.gain.rampTo(DEFAULT_BROWN, 1.6);
-
-                targetPlaying = true;
-                setSoundActive(true);
-
-            } else {
-                await stopAudio();
-                resetFreeField();
-                setSoundActive(false);
-            }
-        });
-
-        /* Poem */
-        poemTrigger.addEventListener("click", openPoem);
-        poemClose.addEventListener("click",   closePoem);
-        document.addEventListener("keydown",  e => { if (e.key === "Escape") closePoem(); });
-
-        /*
-         * Visibility / unload handling.
-         *
-         * DESKTOP: no listeners registered — audio runs continuously
-         *          across tab switches, per spec.
-         * MOBILE:  stop cleanly when the page is hidden or unloaded,
-         *          respecting OS-level audio suspension.
-         */
-        if (isMobile) {
-            document.addEventListener("visibilitychange", () => {
-                if (document.hidden && targetPlaying) {
-                    stopAudio().then(() => {
-                        resetFreeField();
-                        setSoundActive(false);
-                    });
-                }
-            });
-            window.addEventListener("pagehide", () => {
-                if (targetPlaying) stopAudio();
-            });
-        }
-
-        /* Resize */
-        window.addEventListener("resize", () => {
-            ringRadius = computeRingRadius();
-            camera.aspect = innerWidth / innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(innerWidth, innerHeight);
-        });
-
-        /* ── Init ────────────────────────────────────────────────── */
-        ringRadius = computeRingRadius();
-        animate();
-
-    })();
-    </script>
+  </main>
 </body>
 </html>
