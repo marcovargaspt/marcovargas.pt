@@ -11,7 +11,6 @@
   <meta name="author" content="Marco Vargas" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.marcovargas.pt/" />
-  <link rel="icon" href="./W-favicon.ico" type="image/x-icon" />
 
   <!-- Open Graph -->
   <meta property="og:type" content="profile" />
@@ -53,15 +52,19 @@
     html,
     body {
       min-height: 100%;
+      margin: 0;
+      background: #000000;
     }
 
     body {
-      background: #050505;
+      background: #000000;
       color: #f1eee8;
+      width: 100%;
+      min-height: 100vh;
       min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      padding: clamp(28px, 6vw, 48px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
       font-family: 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;
       font-size: 17px;
       line-height: 1.38;
@@ -70,8 +73,9 @@
 
     main {
       width: min(100%, 420px);
+      padding: 0 28px;
       text-align: center;
-      transform: translateY(clamp(-56px, -4vh, -28px));
+      transform: translateY(clamp(-40px, -3vh, -20px));
     }
 
     h1,
