@@ -57,6 +57,7 @@
     }
 
     body {
+      position: relative;
       overflow: hidden;
       background: #000;
       color: #f1eee8;
@@ -79,7 +80,6 @@
 
     .hero-text {
       width: 100%;
-      max-width: none;
       margin: 0 auto;
       text-align: center;
     }
@@ -103,8 +103,16 @@
       gap: 0;
     }
 
-    .contact {
+    .bottom-contact {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      line-height: 1;
       letter-spacing: 0.018em;
+      text-align: center;
+      white-space: nowrap;
     }
 
     a {
@@ -140,12 +148,13 @@
 
       <div class="details">
         <p class="role">Arquitecto</p>
-        <p class="contact">
-          <a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a>
-        </p>
       </div>
     </div>
   </main>
+
+  <div class="bottom-contact">
+    <a href="mailto:mail@marcovargas.pt">Contact</a>
+  </div>
 
   <div class="seo-context">
     Marco Vargas is an architect based in Portugal. His work includes Villa Mater: a House in Azores.
