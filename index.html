@@ -51,8 +51,10 @@
 
     html,
     body {
+      width: 100%;
       min-height: 100%;
       margin: 0;
+      padding: 0;
       background: #000000;
     }
 
@@ -62,9 +64,6 @@
       width: 100%;
       min-height: 100vh;
       min-height: 100dvh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
       font-family: 'Nimbus Roman No9 L', 'Times New Roman', Times, serif;
       font-size: 17px;
       line-height: 1.38;
@@ -72,10 +71,22 @@
     }
 
     main {
-      width: min(100%, 420px);
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
       padding: 0 28px;
+      background: #000000;
       text-align: center;
-      transform: translateY(clamp(-40px, -3vh, -20px));
+    }
+
+    .hero-text {
+      transform: translateY(clamp(-28px, -2vh, -14px));
     }
 
     h1,
@@ -115,14 +126,16 @@
 
 <body>
   <main>
-    <h1>Marco Vargas</h1>
+    <div class="hero-text">
+      <h1>Marco Vargas</h1>
 
-    <div class="details">
-      <p>Arquitecto</p>
+      <div class="details">
+        <p>Arquitecto</p>
 
-      <p class="contact">
-        <a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a>
-      </p>
+        <p class="contact">
+          <a href="mailto:mail@marcovargas.pt">mail@marcovargas.pt</a>
+        </p>
+      </div>
     </div>
 
     <div class="seo-context">
