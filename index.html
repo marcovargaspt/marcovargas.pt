@@ -10,6 +10,7 @@
   <meta name="author" content="Marco Vargas" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.marcovargas.pt/" />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
   <!-- Open Graph -->
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Marco Vargas" />
@@ -90,6 +91,17 @@
       border: 0;
       clip: rect(0 0 0 0);
       clip-path: inset(50%);
+    }
+    @media (max-width: 600px) {
+      .content {
+        top: 12vh;
+        left: 8vw;
+        right: 8vw;
+      }
+      .name-row {
+        flex-wrap: wrap;
+        gap: 1ch;
+      }
     }
   </style>
 </head>
