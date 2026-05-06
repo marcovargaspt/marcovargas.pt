@@ -3,7 +3,6 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <!-- SEO -->
   <title>Marco Vargas</title>
   <meta name="description" content="Marco Vargas is an architect based in Portugal." />
@@ -11,14 +10,12 @@
   <meta name="author" content="Marco Vargas" />
   <meta name="robots" content="index, follow" />
   <link rel="canonical" href="https://www.marcovargas.pt/" />
-
   <!-- Open Graph -->
   <meta property="og:type" content="profile" />
   <meta property="og:title" content="Marco Vargas" />
   <meta property="og:description" content="Marco Vargas is an architect based in Portugal." />
   <meta property="og:url" content="https://www.marcovargas.pt/" />
   <meta property="og:locale" content="pt_PT" />
-
   <!-- Structured Data -->
   <script type="application/ld+json">
   {
@@ -30,102 +27,58 @@
     "email": "mail@marcovargas.pt"
   }
   </script>
-
   <style>
-    @font-face {
-      font-family: "Nimbus Roman No9 L";
-      src:
-        local("Nimbus Roman No9 L Regular"),
-        local("Nimbus Roman No9 L"),
-        url("./NimbusRomNo9L-Reg.woff2") format("woff2");
-      font-weight: 400;
-      font-style: normal;
-      font-display: swap;
-    }
-
     * {
       box-sizing: border-box;
     }
-
     html,
     body {
       width: 100%;
-      min-height: 100%;
+      height: 100%;
       margin: 0;
       padding: 0;
-      background: #000;
     }
-
     body {
-      position: relative;
-      overflow: hidden;
-      background: #000;
-      color: #f1eee8;
-      font-family: "Nimbus Roman No9 L", "Times New Roman", Times, serif;
-      font-size: 17px;
-      line-height: 1.3;
+      background: #fff;
+      color: #000;
+      font-family: Menlo, ui-monospace, monospace;
+      font-size: 13px;
+      line-height: 1.6;
       font-weight: 400;
     }
-
-    main.hero {
-      min-height: 100vh;
-      min-height: 100svh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: #000;
-      text-align: center;
-      padding: 0 24px;
-    }
-
-    .hero-text {
-      width: 100%;
-      margin: 0 auto;
-      text-align: center;
-    }
-
-    h1,
-    p {
-      margin: 0;
-      font-size: inherit;
-      line-height: inherit;
-      font-weight: 400;
-      color: inherit;
-    }
-
-    h1,
-    .role {
-      letter-spacing: 0.024em;
-    }
-
-    .details {
-      display: grid;
-      gap: 0;
-    }
-
-    .bottom-contact {
+    .content {
       position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 14px;
-      line-height: 1;
-      letter-spacing: 0.018em;
-      text-align: center;
-      white-space: nowrap;
+      top: 17vh;
+      left: calc(17vh * 10 / 16);
     }
-
+    .name-row {
+      display: flex;
+      gap: 2ch;
+      margin-bottom: 1.1em;
+    }
+    .name {
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .role {
+      letter-spacing: 0.04em;
+    }
+    .degree {
+      letter-spacing: 0.04em;
+      margin-bottom: 1.1em;
+    }
+    .contact {
+      letter-spacing: 0.04em;
+    }
     a {
       color: inherit;
       text-decoration: none;
     }
-
     a:hover,
     a:focus-visible {
       text-decoration: underline;
       text-underline-offset: 3px;
     }
-
     .seo-context {
       position: absolute;
       width: 1px;
@@ -140,22 +93,17 @@
     }
   </style>
 </head>
-
 <body>
-  <main class="hero">
-    <div class="hero-text">
-      <h1>Marco Vargas</h1>
-
-      <div class="details">
-        <p class="role">Arquitecto</p>
-      </div>
+  <div class="content">
+    <div class="name-row">
+      <span class="name">MARCO VARGAS</span>
+      <span class="role">Arquitecto</span>
     </div>
-  </main>
-
-  <div class="bottom-contact">
-    <a href="mailto:mail@marcovargas.pt">Contacto</a>
+    <div class="degree">M Arq FAUP</div>
+    <div class="contact">
+      <a href="mailto:&#109;&#97;&#105;&#108;&#64;&#109;&#97;&#114;&#99;&#111;&#118;&#97;&#114;&#103;&#97;&#115;&#46;&#112;&#116;">Contacto</a>
+    </div>
   </div>
-
   <div class="seo-context">
     Marco Vargas is an architect based in Portugal. His work includes Villa Mater: a House in Azores.
   </div>
